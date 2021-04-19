@@ -27,7 +27,7 @@ module.exports = (sequelize, Sequelize) => {
             }
         },
         // usersId : the specific user who asked this question
-        usersId:{
+        userId:{
             type: Sequelize.INTEGER,
             allowNull: false
         }

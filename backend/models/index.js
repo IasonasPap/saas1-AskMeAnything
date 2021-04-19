@@ -19,31 +19,31 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-users =  require("./user.model.js")(sequelize, Sequelize);
-questions = require("./question.model.js")(sequelize, Sequelize);
-answers = require("./answer.model.js")(sequelize, Sequelize);
-keywords = require("./keyword.model.js")(sequelize, Sequelize);
+user =  require("./user.model.js")(sequelize, Sequelize);
+question = require("./question.model.js")(sequelize, Sequelize);
+answer = require("./answer.model.js")(sequelize, Sequelize);
+keyword = require("./keyword.model.js")(sequelize, Sequelize);
 questionHasKeyword = require("./questionHasKeyword.model.js")(sequelize, Sequelize);
 
-users.hasMany(questions);
-questions.belongsTo(users);
+user.hasMany(question);
+question.belongsTo(user);
 
-users.hasMany(answers);
-answers.belongsTo(users);
+user.hasMany(answer);
+answer.belongsTo(user);
 
-questions.hasMany(answers);
-answers.belongsTo(questions);
+question.hasMany(answer);
+answer.belongsTo(question);
 
-questions.hasMany(questionHasKeyword);
-questionHasKeyword.belongsTo(questions);
+question.hasMany(questionHasKeyword);
+questionHasKeyword.belongsTo(question);
 
-keywords.hasMany(questionHasKeyword);
-questionHasKeyword.belongsTo(keywords);
+keyword.hasMany(questionHasKeyword);
+questionHasKeyword.belongsTo(keyword);
 
-db.users = users;
-db.answers = answers;
-db.questions = questions;
-db.keywords = keywords;
+db.user = user;
+db.answer = answer;
+db.question = question;
+db.keyword = keyword;
 db.questionHasKeyword = questionHasKeyword;
 
 module.exports = db;

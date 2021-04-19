@@ -18,12 +18,12 @@ module.exports = (sequelize, Sequelize) => {
             }
         },
         // usersId : the specific user who posted this answer
-        usersId:{
+        userId:{
             type: Sequelize.INTEGER,
             allowNull: false
         },
         // questionsId : the specific questioned on which this answer was posted
-        questionsId:{
+        questionId:{
             type: Sequelize.INTEGER,
             allowNull: false
         }
