@@ -5,11 +5,14 @@ const datalayerQuestionController = require('../controllers/datalayer.question.c
 
 // Authenticator Data Interface
 
-//Signin data interface
-router.post("/signin", datalayerAuthController.signin);
+//Authorize User - Signin
+router.post("/authorize", datalayerAuthController.authorize);
 
-//Signup Data Interface
-router.post("/signup", datalayerAuthController.signup);
+//Create User - Signup
+router.post("/createuser", datalayerAuthController.createuser);
+
+//Update User's Password
+router.post("/updatepassword", datalayerAuthController.updatepassword);
 
 router.get("/users", datalayerAuthController.findAll);
 
