@@ -1,0 +1,78 @@
+const db = require("../models");
+const user = db.user;
+const bcrypt = require('bcrypt');
+
+exports.signup = (req, res, next) => {
+
+    // Validate request
+
+    if (!req.body.username || !req.body.password || !req.body.email) {
+        res.status(400).send({
+            message: "You should provide a <username>,a <password> and an <email> for the new user!"
+        });
+        return;
+    }
+
+    // Create a newUser object
+    let newUser = {
+        username: req.body.username,
+        password: req.body.password,
+        fullName: req.body.fullName || null,
+        email: req.body.email
+    };
+
+    //res.send(newUser);
+
+    user.create(newUser)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send(
+                {message: err.parent.sqlMessage || "Some error occurred while creating the user."}
+            );
+        });
+};
+
+exports.signin = (req, res) => {
+    if (!req.body.username || !req.body.password) {
+        res.status(400).send({
+            message: "You should provide a <username> and <password> to sign in!"
+        });
+        return;
+    }
+    user.findOne({where: {username: req.body.username}})
+        .then(data => {
+            bcrypt.compare(req.body.password, data.password)
+                .then((valid) => {
+                    if (!valid) {
+                        res.status(401).send({
+                            message: "Invalid username or password!"
+                        })
+                    } else {
+                        let user = JSON.parse(JSON.stringify(data));
+                        delete user.password;
+                        res.status(200).send(user);
+                    }
+                })
+                .catch(err => res.status(500).json({
+                    error: err
+                }));
+        })
+        .catch(() => res.status(401).json({
+            message: "Invalid username or password!"
+        }));
+}
+
+exports.findAll = (req, res) => {
+    user.findAll()
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving users."
+            });
+        });
+};
