@@ -14,6 +14,9 @@ router.post("/createuser", datalayerAuthController.createuser);
 //Update User's Password
 router.post("/updatepassword", datalayerAuthController.updatepassword);
 
+//Delete User
+router.post("/deleteuser", datalayerAuthController.deleteuser);
+
 router.get("/users", datalayerAuthController.findAll);
 
 //Create-Question Data Interface

@@ -97,7 +97,44 @@ exports.updatepassword = (req, res) => {
                         }
                     })
             }
+            else {
+                res.status(401).json({message: "Invalid username!"})
+            }
         })
+        .catch(() => res.status(401).json({
+            message: "Invalid username!"
+        }));
+}
+
+exports.deleteuser = (req, res) => {
+    if (!req.body.username) {
+        res.status(400).send({
+            message: "You should provide <username>!"
+        });
+        return;
+    }
+
+    user.findOne({where: {username: req.body.username}})
+        .then(data => {
+            if (data) {
+                const {id} = data;
+                user.destroy({where: {id: id}})
+                    .then(result => {
+                        if (!result) {
+                            return res.status(404).send({error: 'No user with this username!'});
+                        }
+                        else {
+                            res.send({message: "User deleted successfully!"});
+                        }
+                    });
+            }
+            else {
+                res.status(401).json({message: "Invalid username!"})
+            }
+        })
+        .catch(() => res.status(401).json({
+            message: "Invalid username!"
+        }));
 }
 
 exports.findAll = (req, res) => {
