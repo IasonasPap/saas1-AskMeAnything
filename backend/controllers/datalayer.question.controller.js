@@ -77,6 +77,49 @@ exports.createquestion = (req, res, next) => {
 
 };
 
+exports.updatequestiontext = (req, res) => {
+    if (!req.body.title || !req.body.text) {
+        res.status(400).send({
+            message: "You should provide new <text>!"
+        });
+        return;
+    }
+    question.findOne({where: {title: req.body.title}})
+        .then(data => {
+            if (data) {
+                const {id} = data;
+                question.update({text: req.body.text}, {
+                    where: {id: id},
+                    raw: true
+                })
+                    .then((result) => {
+                        if (result[0] !== 1) {
+                            return res.status(404).send({
+                                message: `Cannot update Question with id=${id}. Question not found!`
+                            });
+                        } else {
+                            question.findByPk(id)
+                                .then(data => {
+                                    if (data) {
+                                        res.send(data);
+                                    } else {
+                                        return res.status(404).send({
+                                            message: `Not Found Question with id=${id}`
+                                        });
+                                    }
+                                })
+                        }
+                    })
+            }
+            else {
+                res.status(401).json({message: "Invalid title!"})
+            }
+        })
+        .catch(() => res.status(401).json({
+            message: "Invalid title!"
+        }));
+}
+
 exports.findAll = (req, res) => {
     question.findAll()
         .then(data => {
