@@ -38,3 +38,5 @@ exports.signup = (req, res, next) => {
 exports.findAll = (req, res) => {
     res.send(fakeDb);
 };
+
+exports.fakeDb = fakeDb;
