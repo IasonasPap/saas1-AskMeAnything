@@ -37,6 +37,9 @@ router.post("/findquestionbyid", datalayerQuestionController.findById);
 //Find Question By Date
 router.post("/findquestionbydate", datalayerQuestionController.findOneByDate);
 
+//Find Questions By Date
+router.post("/findquestionsbydate", datalayerQuestionController.findAllByDate);
+
 router.get("/questions", datalayerQuestionController.findAll);
 
 //Answer Data Interface
@@ -45,7 +48,7 @@ router.get("/questions", datalayerQuestionController.findAll);
 router.post("/createanswer", datalayerAnswerController.createanswer);
 
 //Delete Answer
-//router.post("/deleteanswer", datalayerAnswerController.deleteanswer);
+router.post("/deleteanswer", datalayerAnswerController.deleteanswer);
 
 //Update Answer's Text
 router.post("/updateanswertext", datalayerAnswerController.updateanswertext);

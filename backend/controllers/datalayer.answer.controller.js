@@ -76,6 +76,37 @@ exports.updateanswertext = (req, res) => {
         }));
 }
 
+exports.deleteanswer = (req, res) => {
+    if (!req.body.id) {
+        res.status(400).send({
+            message: "You should provide <id>!"
+        });
+        return;
+    }
+
+    answer.findOne({where: {id: req.body.id}})
+        .then(data => {
+            if (data) {
+                const {id} = data;
+                answer.destroy({where: {id: id}})
+                    .then(result => {
+                        if (!result) {
+                            return res.status(404).send({error: `The answer with id=${req.body.id} wasn't found!`});
+                        }
+                        else {
+                            res.send({message: "Answer deleted successfully!"});
+                        }
+                    });
+            }
+            else {
+                res.status(401).json({message: `The answer with id=${req.body.id} wasn't found!`})
+            }
+        })
+        .catch(() => res.status(401).json({
+            message: `The answer with id=${req.body.id} wasn't found!`
+        }));
+}
+
 exports.findAll = (req, res) => {
     answer.findAll()
         .then(data => {
