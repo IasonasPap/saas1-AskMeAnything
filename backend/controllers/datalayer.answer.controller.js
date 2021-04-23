@@ -33,6 +33,49 @@ exports.createanswer = (req, res, next) => {
         });
 };
 
+exports.updateanswertext = (req, res) => {
+    if (!req.body.id || !req.body.text) {
+        res.status(400).send({
+            message: "You should provide new <text>!"
+        });
+        return;
+    }
+    answer.findOne({where: {id: req.body.id}})
+        .then(data => {
+            if (data) {
+                const {id} = data;
+                answer.update({text: req.body.text}, {
+                    where: {id: id},
+                    raw: true
+                })
+                    .then((result) => {
+                        if (result[0] !== 1) {
+                            return res.status(404).send({
+                                message: `Cannot update Answer with id=${id}. Answer not found!`
+                            });
+                        } else {
+                            answer.findByPk(id)
+                                .then(data => {
+                                    if (data) {
+                                        res.send(data);
+                                    } else {
+                                        return res.status(404).send({
+                                            message: `Not Found Answer with id=${id}`
+                                        });
+                                    }
+                                })
+                        }
+                    })
+            }
+            else {
+                res.status(401).json({message: "Invalid id!"})
+            }
+        })
+        .catch(() => res.status(401).json({
+            message: "Invalid id!"
+        }));
+}
+
 exports.findAll = (req, res) => {
     answer.findAll()
         .then(data => {

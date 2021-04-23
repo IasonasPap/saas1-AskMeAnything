@@ -42,7 +42,7 @@ router.post("/createanswer", datalayerAnswerController.createanswer);
 //router.post("/deleteanswer", datalayerAnswerController.deleteanswer);
 
 //Update Answer's Text
-//router.post("/updateanswertext", datalayerAnswerController.updateanswertext);
+router.post("/updateanswertext", datalayerAnswerController.updateanswertext);
 
 router.get("/answers", datalayerAnswerController.findAll);
 
