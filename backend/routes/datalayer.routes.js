@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router({mergeParams: true});
 const datalayerAuthController = require('../controllers/datalayer.auth.controller');
 const datalayerQuestionController = require('../controllers/datalayer.question.controller');
+const datalayerAnswerController = require('../controllers/datalayer.answer.controller');
 
 // Authenticator Data Interface
 
@@ -19,7 +20,9 @@ router.post("/deleteuser", datalayerAuthController.deleteuser);
 
 router.get("/users", datalayerAuthController.findAll);
 
-//Create-Question Data Interface
+//Question Data Interface
+
+// Create Question
 router.post("/createquestion", datalayerQuestionController.createquestion);
 
 //Delete Question
@@ -29,5 +32,19 @@ router.post("/createquestion", datalayerQuestionController.createquestion);
 router.post("/updatequestiontext", datalayerQuestionController.updatequestiontext);
 
 router.get("/questions", datalayerQuestionController.findAll);
+
+//Answer Data Interface
+
+//Create Answer
+router.post("/createanswer", datalayerAnswerController.createanswer);
+
+//Delete Answer
+//router.post("/deleteanswer", datalayerAnswerController.deleteanswer);
+
+//Update Answer's Text
+//router.post("/updateanswertext", datalayerAnswerController.updateanswertext);
+
+router.get("/answers", datalayerAnswerController.findAll);
+
 
 module.exports = router;
