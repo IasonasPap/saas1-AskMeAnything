@@ -120,6 +120,29 @@ exports.updatequestiontext = (req, res) => {
         }));
 }
 
+exports.findById = (req, res) => {
+    if (!req.body.id) {
+        res.status(400).send({
+            message: "You should provide the <id>!"
+        });
+        return;
+    }
+
+    question.findOne({where: {id: req.body.id}})
+        .then(data => {
+            if (data) {
+                res.send(data)
+            }
+            else {
+                res.status(401).json({message: "Invalid id!"})
+            }
+        })
+        .catch(() => res.status(401).json({
+            message: "Invalid id!"
+        }));
+
+}
+
 exports.findAll = (req, res) => {
     question.findAll()
         .then(data => {

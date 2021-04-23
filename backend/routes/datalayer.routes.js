@@ -31,6 +31,9 @@ router.post("/createquestion", datalayerQuestionController.createquestion);
 //Update Question's Text
 router.post("/updatequestiontext", datalayerQuestionController.updatequestiontext);
 
+//Find Question By Id
+router.post("/findquestionbyid", datalayerQuestionController.findById);
+
 router.get("/questions", datalayerQuestionController.findAll);
 
 //Answer Data Interface
