@@ -34,6 +34,9 @@ router.post("/updatequestiontext", datalayerQuestionController.updatequestiontex
 //Find Question By Id
 router.post("/findquestionbyid", datalayerQuestionController.findById);
 
+//Find Question By Date
+router.post("/findquestionbydate", datalayerQuestionController.findOneByDate);
+
 router.get("/questions", datalayerQuestionController.findAll);
 
 //Answer Data Interface

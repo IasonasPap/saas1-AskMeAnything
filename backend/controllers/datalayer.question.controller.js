@@ -1,5 +1,7 @@
 const db = require("../models");
 const {question, keyword, questionHasKeyword} = db;
+const {Op} = require("sequelize");
+const moment = require('moment');
 
 exports.createquestion = (req, res, next) => {
 
@@ -139,6 +141,36 @@ exports.findById = (req, res) => {
         })
         .catch(() => res.status(401).json({
             message: "Invalid id!"
+        }));
+
+}
+
+exports.findOneByDate = (req, res) => {
+    if (!req.body.startDate || !req.body.endDate) {
+        res.status(400).send({
+            message: "You should provide starting and ending date of the period!"
+        });
+        return;
+    }
+
+    if (req.body.startDate > req.body.endDate || !moment(req.body.endDate, 'YYYYMMDD', true).isValid() || !moment(req.body.startDate, 'YYYYMMDD', true).isValid()) {
+        res.status(400).send({
+            message: 'Invalid dates!'
+        });
+        return;
+    }
+
+    question.findOne({where: {questionedOn: {[Op.between]: [req.body.startDate, req.body.endDate]}}})
+        .then(data => {
+            if (data) {
+                res.send(data)
+            }
+            else {
+                res.status(401).json({message: "Invalid dates!"})
+            }
+        })
+        .catch(() => res.status(401).json({
+            message: "Invalid dates!"
         }));
 
 }
