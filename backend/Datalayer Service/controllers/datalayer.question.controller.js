@@ -33,7 +33,8 @@ exports.createquestion = (req, res, next) => {
 
                 for (i = 0; i < req.body.keywords.length; i++){
 
-                    const temp_keyword = req.body.keywords[i]
+                    let temp_keyword = req.body.keywords[i];
+                    temp_keyword = temp_keyword.toLowerCase();
 
                     keyword.findOne({where : {word:temp_keyword}})
                         .then(data => {
@@ -48,7 +49,6 @@ exports.createquestion = (req, res, next) => {
                                 questionHasKeyword.create(newQuestionHasKeyword)
                             }
                             else{
-                                console.log(temp_keyword)
                                 let newKeyword = {
                                     word : temp_keyword
                                 }
@@ -78,6 +78,39 @@ exports.createquestion = (req, res, next) => {
 
 
 };
+exports.deletequestion = (req, res) => {
+    if (!req.body.id) {
+        res.status(400).send({
+            message: "You should provide <id>!"
+        });
+        return;
+    }
+
+    question.findOne({where: {id: req.body.id}})
+        .then(data => {
+            if (data) {
+                const {id} = data;
+                question.destroy({where: {id: id}})
+                    .then(result => {
+                        if (!result) {
+                            return res.status(404).send({error: `The question with id=${req.body.id} wasn't found!`});
+                        }
+                        else {
+                            questionHasKeyword.destroy({where: {questionId: id}})
+                                .then(result => {
+                                    res.send({message: "Question deleted successfully!"});
+                                })
+                        }
+                    });
+            }
+            else {
+                res.status(401).json({message: `The question with id=${req.body.id} wasn't found!`})
+            }
+        })
+        .catch(() => res.status(401).json({
+            message: `The question with id=${req.body.id} wasn't found!`
+        }));
+}
 
 exports.updatequestiontext = (req, res) => {
     if (!req.body.title || !req.body.text) {

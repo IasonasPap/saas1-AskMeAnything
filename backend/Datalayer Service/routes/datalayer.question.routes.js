@@ -8,7 +8,7 @@ const datalayerQuestionController = require('../controllers/datalayer.question.c
 router.post("/createquestion", datalayerQuestionController.createquestion);
 
 //Delete Question
-//router.post("/deletequestion", datalayerQuestionController.deletequestion);
+router.post("/deletequestion", datalayerQuestionController.deletequestion);
 
 //Update Question's Text
 router.post("/updatequestiontext", datalayerQuestionController.updatequestiontext);
