@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../../models");
 const {answer} = db;
 
 exports.createanswer = (req, res, next) => {

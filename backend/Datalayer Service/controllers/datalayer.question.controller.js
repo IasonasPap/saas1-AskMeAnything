@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../../models");
 const {question, keyword, questionHasKeyword} = db;
 const {Op} = require("sequelize");
 const moment = require('moment');
