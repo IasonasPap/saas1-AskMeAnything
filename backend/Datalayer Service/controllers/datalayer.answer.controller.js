@@ -1,5 +1,5 @@
 const db = require("../../models");
-const {answer} = db;
+const {answer, question} = db;
 
 exports.createanswer = (req, res, next) => {
 
@@ -32,6 +32,31 @@ exports.createanswer = (req, res, next) => {
             );
         });
 };
+
+exports.findAnswersByQuestionId = (req, res) => {
+    if (!req.body.id) {
+        res.status(400).send({
+            message: "You should provide the <id>!"
+        });
+        return;
+    }
+
+    question.findOne({where: {id: req.body.id}})
+        .then(data => {
+            if (data) {
+                data.getAnswers()
+                    .then(data => {
+                        res.send(data);
+                    })
+            }
+            else {
+                res.status(401).json({message: "Invalid id!"})
+            }
+        })
+        .catch(() => res.status(401).json({
+            message: "Invalid id!"
+        }));
+}
 
 exports.updateanswertext = (req, res) => {
     if (!req.body.id || !req.body.text) {

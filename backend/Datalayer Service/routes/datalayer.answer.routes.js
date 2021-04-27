@@ -13,6 +13,9 @@ router.post("/deleteanswer", datalayerAnswerController.deleteanswer);
 //Update Answer's Text
 router.post("/updateanswertext", datalayerAnswerController.updateanswertext);
 
+//Find Answers by Question
+router.post("/findanswersbyquestion", datalayerAnswerController.findAnswersByQuestionId);
+
 router.get("/findanswers", datalayerAnswerController.findAll);
 
 module.exports = router;
