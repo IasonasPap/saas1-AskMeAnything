@@ -163,6 +163,7 @@ exports.findById = (req, res) => {
     question.findOne({where: {id: req.body.id}})
         .then(data => {
             if (data) {
+                //data.getKeywords().then(data2 => {console.log(data2); res.send(data2)})
                 res.send(data)
             }
             else {
@@ -172,7 +173,31 @@ exports.findById = (req, res) => {
         .catch(() => res.status(401).json({
             message: "Invalid id!"
         }));
+}
 
+exports.findKeywordByQuestionId = (req, res) => {
+    if (!req.body.id) {
+        res.status(400).send({
+            message: "You should provide the <id>!"
+        });
+        return;
+    }
+
+    question.findOne({where: {id: req.body.id}})
+        .then(data => {
+            if (data) {
+                data.getKeywords()
+                    .then(data => {
+                        res.send(data);
+                    })
+            }
+            else {
+                res.status(401).json({message: "Invalid id!"})
+            }
+        })
+        .catch(() => res.status(401).json({
+            message: "Invalid id!"
+        }));
 }
 
 exports.findOneByDate = (req, res) => {

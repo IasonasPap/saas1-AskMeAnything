@@ -22,6 +22,9 @@ router.post("/findquestionbydate", datalayerQuestionController.findOneByDate);
 //Find Questions By Date
 router.post("/findquestionsbydate", datalayerQuestionController.findAllByDate);
 
+//Find Keywords By Question
+router.post("/findkeywordsbyquestion", datalayerQuestionController.findKeywordByQuestionId);
+
 router.get("/findquestions", datalayerQuestionController.findAll);
 
 module.exports = router;
