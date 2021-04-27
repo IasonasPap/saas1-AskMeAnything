@@ -96,10 +96,7 @@ exports.deletequestion = (req, res) => {
                             return res.status(404).send({error: `The question with id=${req.body.id} wasn't found!`});
                         }
                         else {
-                            questionHasKeyword.destroy({where: {questionId: id}})
-                                .then(result => {
-                                    res.send({message: "Question deleted successfully!"});
-                                })
+                            res.send({message: "Question deleted successfully!"});
                         }
                     });
             }
