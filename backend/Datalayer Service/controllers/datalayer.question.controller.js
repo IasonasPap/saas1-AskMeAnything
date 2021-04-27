@@ -200,6 +200,31 @@ exports.findKeywordByQuestionId = (req, res) => {
         }));
 }
 
+exports.findQuestionByKeyword = (req, res) => {
+    if (!req.body.word) {
+        res.status(400).send({
+            message: "You should provide the keyword!"
+        });
+        return;
+    }
+
+    keyword.findOne({where: {word: req.body.word}})
+        .then(data => {
+            if (data) {
+                data.getQuestions()
+                    .then(data => {
+                        res.send(data);
+                    })
+            }
+            else {
+                res.status(401).json({message: "Invalid keyword!"})
+            }
+        })
+        .catch(() => res.status(401).json({
+            message: "Invalid keyword!"
+        }));
+}
+
 exports.findOneByDate = (req, res) => {
     if (!req.body.startDate || !req.body.endDate) {
         res.status(400).send({

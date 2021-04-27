@@ -1,6 +1,3 @@
-//const db = require("./models");
-//const {keyword, question} = db;
-
 module.exports = (sequelize, Sequelize) => {
 
     const questionHasKeyword = sequelize.define("questionHasKeyword", {
