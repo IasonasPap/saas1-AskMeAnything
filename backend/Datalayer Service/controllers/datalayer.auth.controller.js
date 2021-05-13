@@ -41,24 +41,11 @@ exports.authorize = (req, res) => {
     }
     user.findOne({where: {username: req.body.username}})
         .then(data => {
-            bcrypt.compare(req.body.password, data.password)
-                .then((valid) => {
-                    if (!valid) {
-                        res.status(401).send({
-                            message: "Invalid username or password!"
-                        })
-                    } else {
-                        let user = JSON.parse(JSON.stringify(data));
-                        delete user.password;
-                        res.status(200).send(user);
-                    }
-                })
-                .catch(err => res.status(500).json({
-                    error: err
-                }));
+            if (!data) return res.status(400).send({message: 'User Not Found'});
+            return res.status(200).send(data);
         })
         .catch(() => res.status(401).json({
-            message: "Invalid username or password!"
+            message: "Invalid username!"
         }));
 }
 
