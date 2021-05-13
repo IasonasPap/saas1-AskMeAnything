@@ -77,6 +77,10 @@
     padding: 1em;
     height: auto;
   }
+  
+  .flex {
+    text-align: center;
+  }
   /* .auth.page .auth-box input:hover, .auth.page .auth-box input:focus {
     border-width: 2px !important;
   } */
@@ -113,7 +117,7 @@
     font-family: Sansation, sans-serif;
     font-weight: 200;
     font-size: 1.2em;
-    padding: 1em 2em;
+    padding: 0.7em 1em;
     background-color: #2a7129;
     border-radius: 3px;
   }
