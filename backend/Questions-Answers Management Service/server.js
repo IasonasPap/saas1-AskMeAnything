@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 // to support URL-encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/datalayer', routes);
+app.use('/qa', routes);
 
 //for future use, when we have set the db
 const db = require("../models");
