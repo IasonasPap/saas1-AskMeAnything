@@ -40,6 +40,12 @@ exports.signin = (req, res) => {
         }));
 }
 
+exports.authorize = (req, res) => {
+    res.status(200).send({
+        message: "User authorized successfully!"
+    })
+}
+
 exports.logout = (req, res) => {
     res.status(200).send({
         message: "Successfully logged out!"
