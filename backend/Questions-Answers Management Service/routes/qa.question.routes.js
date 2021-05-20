@@ -26,7 +26,7 @@ router.post("/findquestionsbydate", qaQuestionController.findAllByDate);
 router.post("/findkeywordsbyquestion", qaQuestionController.findKeywordByQuestionId);
 
 //Find Questions by Keyword
-router.post("/findquestionsbykeyword", qaQuestionController.findQuestionByKeyword);
+router.post("/findquestionsbykeyword", qaQuestionController.findQuestionsByKeyword);
 
 router.get("/findquestions", qaQuestionController.findAll);
 

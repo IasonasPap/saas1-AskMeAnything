@@ -33,8 +33,7 @@ exports.createquestion = (req, res, next) => {
 
                 for (i = 0; i < req.body.keywords.length; i++){
 
-                    let temp_keyword = req.body.keywords[i];
-                    temp_keyword = temp_keyword.toLowerCase();
+                    let temp_keyword = req.body.keywords[i].toLowerCase();
 
                     keyword.findOne({where : {word:temp_keyword}})
                         .then(data => {
@@ -200,7 +199,7 @@ exports.findKeywordByQuestionId = (req, res) => {
         }));
 }
 
-exports.findQuestionByKeyword = (req, res) => {
+exports.findQuestionsByKeyword = (req, res) => {
     if (!req.body.word) {
         res.status(400).send({
             message: "You should provide the keyword!"
@@ -208,7 +207,9 @@ exports.findQuestionByKeyword = (req, res) => {
         return;
     }
 
-    keyword.findOne({where: {word: req.body.word}})
+    let temp_keyword = req.body.word.toLowerCase();
+
+    keyword.findOne({where: {word: temp_keyword}})
         .then(data => {
             if (data) {
                 data.getQuestions()
@@ -223,7 +224,7 @@ exports.findQuestionByKeyword = (req, res) => {
         .catch(() => res.status(401).json({
             message: "Invalid keyword!"
         }));
-}
+};
 
 exports.findOneByDate = (req, res) => {
     if (!req.body.startDate || !req.body.endDate) {
@@ -252,7 +253,7 @@ exports.findOneByDate = (req, res) => {
         .catch(() => res.status(401).json({
             message: "Invalid dates!"
         }));
-}
+};
 
 exports.findAllByDate = (req, res) => {
     if (!req.body.startDate || !req.body.endDate) {
@@ -281,7 +282,7 @@ exports.findAllByDate = (req, res) => {
         .catch(() => res.status(401).json({
             message: "Invalid dates!"
         }));
-}
+};
 
 exports.findAll = (req, res) => {
     question.findAll()

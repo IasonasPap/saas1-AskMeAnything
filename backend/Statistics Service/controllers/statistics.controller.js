@@ -11,7 +11,9 @@ exports.countQuestionsPerKeyword = (req, res) => {
         return;
     }
 
-    keyword.findOne({where: {word: req.body.word}})
+    let temp_keyword = req.body.word.toLowerCase();
+
+    keyword.findOne({where: {word: temp_keyword}})
         .then(data => {
             if (data) {
                 data.getQuestions()
@@ -102,7 +104,9 @@ exports.percentageQuestionsPerKeyword = (req, res) => {
         return;
     }
 
-    keyword.findOne({where: {word: req.body.word}})
+    let temp_keyword = req.body.word.toLowerCase();
+
+    keyword.findOne({where: {word: temp_keyword}})
         .then(data => {
             if (data) {
                 let count = Object.keys(data).length;
