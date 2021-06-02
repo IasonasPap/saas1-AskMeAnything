@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 // to support URL-encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/auth', routes);
+app.use('/saas1', routes);
 
 //for future use, when we have set the db
 const db = require("../models");
@@ -27,8 +27,8 @@ db.sequelize.sync()
     });
 
 const options = {
-    key: fs.readFileSync('backend/server.key'),
-    cert: fs.readFileSync('backend/server.crt')
+    key: fs.readFileSync('../server.key'),
+    cert: fs.readFileSync('../server.crt')
 };
 
 https.createServer(options, app)
