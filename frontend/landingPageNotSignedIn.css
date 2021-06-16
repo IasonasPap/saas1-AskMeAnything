@@ -1,0 +1,54 @@
+html,body {
+    margin: 0px;
+}
+a {
+    text-decoration: none;
+}
+
+header {
+    position: sticky;
+    top: 0;
+}
+.navbar {
+    background-color: #75d289;
+    padding: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+li a {
+    display: block;
+    color: rgb(252, 248, 248);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.auth-btns ul{
+    display: flex;
+    margin-right: 10px;
+}
+
+.signup {
+    background-color: peru;
+    border-radius: 5px;
+    color: honeydew;
+}
+.graphs {
+    margin-top: 36px;
+}
+.per-keyword-graph, .per-period-graph {
+    border: 2px solid red;
+    width: 80%;
+    margin: auto;
+}

@@ -27,13 +27,13 @@ db.sequelize.sync()
     });
 
 const options = {
-    key: fs.readFileSync('../server.key'),
-    cert: fs.readFileSync('../server.crt')
+    key: fs.readFileSync('backend/server.key'),
+    cert: fs.readFileSync('backend/server.crt')
 };
 
 https.createServer(options, app)
-    .listen(3000, function () {
-        console.log('App listening on port 3000! Go to https://localhost:3000/')
+    .listen(4000, function () {
+        console.log('App listening on port 4000! Go to https://localhost:4000/')
     });
 
 
