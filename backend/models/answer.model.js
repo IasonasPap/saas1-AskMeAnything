@@ -30,5 +30,13 @@ module.exports = (sequelize, Sequelize) => {
     }, {
         timestamps: false
     });
+
+    answer.prototype.toJSON = function(){
+        const temp = {...this.get()};
+        dateString = `${temp.answeredOn}`;
+        temp.answeredOn = dateString.substr(0,21);
+        return temp;
+    };
+
     return answer;
 };
