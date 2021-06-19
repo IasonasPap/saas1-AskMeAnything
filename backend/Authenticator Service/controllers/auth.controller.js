@@ -27,7 +27,8 @@ exports.signin = (req, res) => {
                             'RANDOM_TOKEN_SECRET',
                             {expiresIn: '24h'});
                         res.status(200).json({
-                            token: token
+                            token: token,
+                            user: user
                         });
                     }
                 })
