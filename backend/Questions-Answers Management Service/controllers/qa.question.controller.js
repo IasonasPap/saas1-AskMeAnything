@@ -159,7 +159,18 @@ exports.findById = (req, res) => {
         return;
     }
 
-    question.findOne({where: {id: req.body.id}})
+    question.findOne({
+        where: {id: req.body.id},
+        include: [{
+            model: answer, required: false,
+            attributes: ['text', 'answeredOn']
+        }, {
+            model: keyword, required: false, attributes: ['word'],
+            through: {
+                model: questionHasKeyword, attributes: []
+            }
+        }]
+    })
         .then(data => {
             if (data) {
                 //data.getKeywords().then(data2 => {console.log(data2); res.send(data2)})
@@ -241,7 +252,18 @@ exports.findOneByDate = (req, res) => {
         return;
     }
 
-    question.findOne({where: {questionedOn: {[Op.between]: [req.body.startDate, req.body.endDate]}}})
+    question.findOne({
+        where: {questionedOn: {[Op.between]: [req.body.startDate, req.body.endDate]}},
+        include: [{
+            model: answer, required: false,
+            attributes: ['text', 'answeredOn']
+        }, {
+            model: keyword, required: false, attributes: ['word'],
+            through: {
+                model: questionHasKeyword, attributes: []
+            }
+        }]
+    })
         .then(data => {
             if (data) {
                 res.send(data)
@@ -270,7 +292,18 @@ exports.findAllByDate = (req, res) => {
         return;
     }
 
-    question.findAll({where: {questionedOn: {[Op.between]: [req.body.startDate, req.body.endDate]}}})
+    question.findAll({
+        where: {questionedOn: {[Op.between]: [req.body.startDate, req.body.endDate]}},
+        include: [{
+            model: answer, required: false,
+            attributes: ['text', 'answeredOn']
+        }, {
+            model: keyword, required: false, attributes: ['word'],
+            through: {
+                model: questionHasKeyword, attributes: []
+            }
+        }]
+    })
         .then(data => {
             if (data) {
                 res.send(data)
@@ -285,7 +318,17 @@ exports.findAllByDate = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    question.findAll()
+    question.findAll({
+        include: [{
+            model: answer, required: false,
+            attributes: ['text', 'answeredOn']
+        }, {
+            model: keyword, required: false, attributes: ['word'],
+            through: {
+                model: questionHasKeyword, attributes: []
+            }
+        }]
+    })
         .then(data => {
             res.send(data);
         })
