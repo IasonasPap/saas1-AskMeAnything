@@ -1,32 +1,36 @@
-#title {
+/**********************************************************************************************************************
+ * Log-in
+ */
+ #title {
     font-size: 80px;
-}
-.auth.page {
+    color: white;
+  }
+  
+ .auth.page {
     padding: 0;
     min-height: 100%;
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #75d28959;
+    background-color: #75d289;
     color: #ffffff;
   }
-
-  /* .auth.page .logo {
+  .auth.page .logo {
     font-size: 9em;
     color: #ffffff;
-  } */
-
+  }
+  .auth.page h1 {
+    color: #eeeeee;
+  }
   .auth.page .auth-box {
     flex: 1 0 auto;
     padding: 1em 2em 2em;
     font-size: 1.2rem;
   }
-
-  /* .auth.page .auth-box .auth-title {
+  .auth.page .auth-box .auth-title {
     text-align: center;
-  } */
-
+  }
   .auth.page .auth-box ::-webkit-input-placeholder {
     color: #cccccc;
     opacity: 1;
@@ -65,7 +69,6 @@
   .auth.page .auth-box .input-container {
     margin-bottom: 0.75rem;
   }
-
   .auth.page .auth-box input {
     font-size: 1.2rem;
     width: 100%;
@@ -77,18 +80,14 @@
     padding: 1em;
     height: auto;
   }
-  
-  .flex {
-    text-align: center;
-  }
-  /* .auth.page .auth-box input:hover, .auth.page .auth-box input:focus {
+  .auth.page .auth-box input:hover, .auth.page .auth-box input:focus {
     border-width: 2px !important;
-  } */
-  /* .auth.page .auth-box sp-checkbox {
+  }
+  .auth.page .auth-box sp-checkbox {
     display: flex;
     justify-content: center;
-  } */
-  /* .auth.page .auth-box sp-checkbox .sp-checkbox {
+  }
+  .auth.page .auth-box sp-checkbox .sp-checkbox {
     justify-content: center;
     margin-top: 1em;
   }
@@ -112,29 +111,29 @@
   .auth.page .auth-box sp-checkbox .sp-checkbox.sp-disabled .checkbox {
     background-color: #aaaaaa;
     color: #999999;
-  } */
+  }
   .auth.page .auth-box .login-btn {
     font-family: Sansation, sans-serif;
     font-weight: 200;
     font-size: 1.2em;
     padding: 0.7em 1em;
-    background-color: #2a7129;
+    background-color: #75d289;
     border-radius: 3px;
   }
-  /* .auth.page .auth-box .login-btn[disabled] {
+  .auth.page .auth-box .login-btn[disabled] {
     color: inherit;
     background-color: #aaaaaa;
   }
   .auth.page .auth-box .login-btn:not([disabled]):hover {
     filter: brightness(90%);
-  } */
+  }
   .auth.page .footer {
     text-align: center;
     padding: 1em;
     font-size: 0.7em;
     color: #222222;
   }
-  /* .auth.page .footer a {
+  .auth.page .footer a {
     color: #ffffff;
   }
   .auth.page .footer .vertical-separator {
@@ -155,8 +154,7 @@
   }
   .auth.page .linear-activity {
     position: static;
-  } */
-
-
-
-
+  }
+  .flex {
+    text-align: center;
+  }

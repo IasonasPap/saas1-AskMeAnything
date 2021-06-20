@@ -116,7 +116,7 @@
     font-family: Sansation, sans-serif;
     font-weight: 200;
     font-size: 1.2em;
-    padding: 1em 2em;
+    padding: 0.7em 1em;
     background-color: #2a7129;
     border-radius: 3px;
   }
@@ -155,4 +155,6 @@
   .auth.page .linear-activity {
     position: static;
   }
-  
+  .flex {
+    text-align: center;
+  }

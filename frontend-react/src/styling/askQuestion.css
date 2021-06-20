@@ -1,0 +1,9 @@
+textarea {
+    width: 100%
+}
+label {
+    font-weight: bolder;
+}
+.ask-question-container {
+    padding: 40px;
+}
