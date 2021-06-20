@@ -14,7 +14,7 @@ import Browse from "./components/browseQuestions.component.js";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
-
+  
   useEffect(() => {
     const user = AuthService.getCurrentUser();
 
@@ -30,11 +30,11 @@ const App = () => {
   return (
     <>
       <header>
-        <ul class="navbar">
+        <ul className="navbar">
             <li><Link to={"/"} className="navbar-brand">Logo</Link></li>
             <li><Link to={"/home"} className="nav-link">Home</Link></li>
-            <li><Link to={"/ask"}>Ask Question</Link></li>
-            <li><Link to={"/answer"}>Answer Question</Link></li>
+            <li><Link to={() => currentUser ? "/ask" : "/login"}>Ask Question</Link></li>
+            <li><Link to={"/answer/1"}>Answer Question</Link></li>
             <li><Link to={"/questions"}>Browse Questions</Link></li>
             {currentUser ? (
             <li className="auth-btns">
@@ -45,7 +45,7 @@ const App = () => {
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <a href="/logout" className="nav-link" onClick={logOut}>
+                    <a href="/home" className="nav-link" onClick={logOut}>
                       LogOut
                     </a>
                   </li>
@@ -74,9 +74,9 @@ const App = () => {
       <div className="container mt-3">
         <Switch>
           <Route exact path={["/", "/home"]} component={Home} />
-          <Route exact path="/answer" component={Answer} />
+          <Route exact path="/answer/:id"><Answer currentUser={currentUser}/></Route>
           <Route exact path="/ask" component={Ask} />
-          <Route exact path="/questions" component={Browse} />
+          <Route exact path="/questions"><Browse currentUser={currentUser}/></Route>
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />

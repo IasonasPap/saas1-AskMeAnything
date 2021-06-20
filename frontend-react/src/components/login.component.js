@@ -9,7 +9,7 @@ import "../styling/signin.css";
 const required = (value) => {
   if (!value) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert" role="alert">
         This field is required!
       </div>
     );

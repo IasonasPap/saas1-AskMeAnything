@@ -89,7 +89,6 @@ const Register = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.register(username, email, password, fullname).then(
         (response) => {
-          console.log(response.data.username)
           setMessage(`${response.data.username} succesfully signed up!`);
           setSuccessful(true);
         },
@@ -178,9 +177,9 @@ const Register = (props) => {
                             type="submit" ><span className="flex-1 text-align-center">SIGN-UP</span>
                     </button>
                 </div>
-                <div className="linear-activity space-bottom-half" >
+                {/* <div className="linear-activity space-bottom-half" >
                     <div className="indeterminate"></div>
-                </div>
+                </div> */}
             </div>
           )}
 

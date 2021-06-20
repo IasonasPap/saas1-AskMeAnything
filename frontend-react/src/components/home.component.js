@@ -8,7 +8,7 @@ const Home = () => {
   useEffect(() => {
     UserService.getPublicContent().then(
       (response) => {
-        console.log(response.data);
+        //console.log(response.data);
         setContent(response.data);
       },
       (error) => {
@@ -16,7 +16,7 @@ const Home = () => {
           (error.response && error.response.data) ||
           error.message ||
           error.toString();
-
+          console.log(_content);
         setContent(_content);
       }
     );

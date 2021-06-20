@@ -1,0 +1,19 @@
+.q-container {
+    padding: 25px;
+}
+
+.questions-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#question {
+    background-color: rgb(223, 190, 141);
+    margin-bottom: 8px;
+    border-radius: 7px;
+}
+
+.answer-link:hover {
+    color: blue;
+}
