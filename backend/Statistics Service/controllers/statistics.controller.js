@@ -1,6 +1,6 @@
 const db = require("../../models");
 const {question, keyword, questionHasKeyword} = db;
-const {Op} = require("sequelize");
+const {Op, fn, col} = require("sequelize");
 const moment = require('moment');
 
 exports.countQuestionsPerKeyword = (req, res) => {
@@ -124,4 +124,35 @@ exports.percentageQuestionsPerKeyword = (req, res) => {
         .catch(() => res.status(401).json({
             message: "Invalid keyword!"
         }));
+};
+
+exports.questionsPerDay = (req, res) => {
+    question.findAll({
+        attributes: [[fn('date', col('questionedOn')), 'date'], [fn('count', col('id')), 'count']],
+        group: ['date']
+    })
+        .then(data => {
+            /*
+            for (let i = 0; i < data.length; i++){
+                console.log(data[i]);
+                dateString = `${data[i].date}`
+                data[i].date = dateString.substr(0, 21);
+            }
+             */
+            res.status(200).json(data);
+        })
+        /*
+        .then(data => {
+            if (data) {
+                let count = Object.keys(data).length;
+                res.send({count: count});
+            }
+            else {
+                res.status(401).json({count: 0})
+            }
+        })
+        .catch(() => res.status(401).json({
+            message: "Invalid dates!"
+        }));
+         */
 };

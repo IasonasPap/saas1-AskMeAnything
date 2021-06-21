@@ -8,4 +8,7 @@ router.post('/countquestionsperperiod', statisticsController.countQuestionsPerPe
 router.post('/percentagequestionsperkeyword', statisticsController.percentageQuestionsPerKeyword);
 router.post('/percentagequestionsperperiod', statisticsController.percentageQuestionsPerPeriod);
 
+router.get('/questionsperdate', statisticsController.questionsPerDay);
+
+
 module.exports = router;
