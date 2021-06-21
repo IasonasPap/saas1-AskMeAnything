@@ -132,13 +132,6 @@ exports.questionsPerDay = (req, res) => {
         group: ['date']
     })
         .then(data => {
-            /*
-            for (let i = 0; i < data.length; i++){
-                console.log(data[i]);
-                dateString = `${data[i].date}`
-                data[i].date = dateString.substr(0, 21);
-            }
-             */
             res.status(200).json(data);
         })
         /*
