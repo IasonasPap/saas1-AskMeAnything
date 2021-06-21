@@ -183,7 +183,7 @@ exports.findById = (req, res) => {
         .catch(() => res.status(401).json({
             message: "Invalid id!"
         }));
-}
+};
 
 exports.findKeywordByQuestionId = (req, res) => {
     if (!req.body.id) {
@@ -314,6 +314,40 @@ exports.findAllByDate = (req, res) => {
         })
         .catch(() => res.status(401).json({
             message: "Invalid dates!"
+        }));
+};
+
+exports.findQuestionsByUserId = (req, res) => {
+    if (!req.body.userid) {
+        res.status(400).send({
+            message: "You should provide the <userid>!"
+        });
+        return;
+    }
+
+    question.findAll({
+        where: {userId: req.body.userid},
+        include: [{
+            model: answer, required: false,
+            attributes: ['text', 'answeredOn']
+        }, {
+            model: keyword, required: false, attributes: ['word'],
+            through: {
+                model: questionHasKeyword, attributes: []
+            }
+        }]
+    })
+        .then(data => {
+            if (data) {
+                //data.getKeywords().then(data2 => {console.log(data2); res.send(data2)})
+                res.send(data)
+            }
+            else {
+                res.status(401).json({message: "Invalid user id!"})
+            }
+        })
+        .catch(() => res.status(401).json({
+            message: "Invalid user id!"
         }));
 };
 
