@@ -135,3 +135,16 @@ exports.questionsPerDay = (req, res) => {
             res.status(200).json(data);
         })
 };
+
+exports.questionsPerKeyword = (req, res) => {
+    keyword.findAll({
+        attributes: ['word', [fn('count', col('questionId')), 'count']],
+        include: [{
+            model: questionHasKeyword, attributes: []
+        }],
+        group: ['keyword.id']
+    })
+        .then(data => {
+            res.status(200).json(data);
+        })
+};

@@ -37,6 +37,8 @@ answer.belongsTo(question);
 question.belongsToMany(keyword, {through: questionHasKeyword});
 keyword.belongsToMany(question, {through: questionHasKeyword});
 
+keyword.hasMany(questionHasKeyword);
+
 db.user = user;
 db.answer = answer;
 db.question = question;
