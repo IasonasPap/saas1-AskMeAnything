@@ -134,18 +134,4 @@ exports.questionsPerDay = (req, res) => {
         .then(data => {
             res.status(200).json(data);
         })
-        /*
-        .then(data => {
-            if (data) {
-                let count = Object.keys(data).length;
-                res.send({count: count});
-            }
-            else {
-                res.status(401).json({count: 0})
-            }
-        })
-        .catch(() => res.status(401).json({
-            message: "Invalid dates!"
-        }));
-         */
 };
