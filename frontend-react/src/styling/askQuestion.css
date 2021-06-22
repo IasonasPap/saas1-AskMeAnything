@@ -1,9 +1,39 @@
 textarea {
-    width: 100%
+    width: 100%;
+    margin-bottom: 20px;
+    border:turquoise;
+    border-radius: 2px;
+    background-color: rgb(233, 230, 230);
 }
-label {
+.label-container {
     font-weight: bolder;
+    margin-bottom: 20px;
+    font-family: Poppins, sans-serif;
 }
 .ask-question-container {
+    background-color: #9bc3e9;
     padding: 40px;
+}
+
+.btns-container {
+    margin-top: 10px;
+}
+
+button {
+    padding: 20px 30px;
+    color: white;
+    font-weight: bold;
+    background-color: #417B50;
+    border-radius: 4px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    color: rgb(219, 205, 24);
+}
+
+.submit-btn {
+    margin-right: 40px;
 }

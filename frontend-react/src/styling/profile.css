@@ -1,0 +1,39 @@
+.profile-name {
+    padding: 28px;
+}
+.profile-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #9bc3e9;
+}
+
+
+
+.profile-user ul{
+    font-family: Poppins;
+    font-weight: bolder;
+}
+
+.profile-stats ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+}
+
+.profile-stats {
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+#my-answers {
+    margin: 0 8px;
+}
+
+.info {
+    font-size: 0.78em;
+}

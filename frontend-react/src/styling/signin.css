@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #75d289;
+    background-color: #97a7b6;
     color: #ffffff;
   }
   .auth.page .logo {
@@ -117,12 +117,12 @@
     font-weight: 200;
     font-size: 1.2em;
     padding: 0.7em 1em;
-    background-color: #75d289;
+    background-color: #417B50;
     border-radius: 3px;
   }
   .auth.page .auth-box .login-btn[disabled] {
     color: inherit;
-    background-color: #aaaaaa;
+    background-color: #417B50;
   }
   .auth.page .auth-box .login-btn:not([disabled]):hover {
     filter: brightness(90%);
