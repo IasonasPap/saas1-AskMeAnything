@@ -220,22 +220,32 @@ exports.findQuestionsByKeyword = (req, res) => {
 
     let temp_keyword = req.body.word.toLowerCase();
 
-    keyword.findOne({where: {word: temp_keyword}})
+    keyword.findOne({
+        where: {word: temp_keyword},
+        include: [{
+            model: question, required: true,
+            through: {
+                model: questionHasKeyword, attributes: []
+            },
+            include: [{
+                model: answer, required: false,
+                attributes: ['text', 'answeredOn']
+            }, {
+                model: keyword, required: true, attributes: ['word'],
+                through: {
+                    model: questionHasKeyword, attributes: []
+                },
+            }]
+        }]
+    })
         .then(data => {
-            if (data) {
-                data.getQuestions()
-                    .then(data => {
-                        res.send(data);
-                    })
-            }
-            else {
-                res.status(401).json({message: "Invalid keyword!"})
-            }
+            res.send(data.dataValues.questions);
         })
         .catch(() => res.status(401).json({
-            message: "Invalid keyword!"
+            message: "Something went wrong!"
         }));
 };
+
 
 exports.findOneByDate = (req, res) => {
     if (!req.body.startDate || !req.body.endDate) {
@@ -301,8 +311,35 @@ exports.findAllByDateAndKeyword = (req, res) => {
 
     let temp_keyword = req.body.word.toLowerCase();
 
+    keyword.findOne({
+        where: {word: temp_keyword},
+        include: [{
+            model: question, required: true,
+            where: {questionedOn: {[Op.between]: [req.body.startDate, req.body.endDate]}},
+            through: {
+                model: questionHasKeyword, attributes: []
+            },
+            include: [{
+                model: answer, required: false,
+                attributes: ['text', 'answeredOn']
+            }, {
+                model: keyword, required: true, attributes: ['word'],
+                through: {
+                    model: questionHasKeyword, attributes: []
+                },
+            }]
+        }]
+    })
+        .then(data => {
+            res.send(data.dataValues.questions);
+        })
+        .catch(() => res.status(401).json({
+            message: "Something went wrong!"
+        }));
+};
+/*
     question.findAll({
-        where: {questionedOn: {[Op.between]: [req.body.startDate, req.body.endDate]}},
+        where: {},
         include: [{
             model: answer, required: false,
             attributes: ['text', 'answeredOn']
@@ -325,7 +362,8 @@ exports.findAllByDateAndKeyword = (req, res) => {
         .catch(() => res.status(401).json({
             message: "Invalid dates or word!"
         }));
-};
+
+ */
 
 exports.findAllByDate = (req, res) => {
     if (!req.body.startDate || !req.body.endDate) {
