@@ -277,6 +277,56 @@ exports.findOneByDate = (req, res) => {
         }));
 };
 
+exports.findAllByDateAndKeyword = (req, res) => {
+    if (!req.body.startDate || !req.body.endDate) {
+        res.status(400).send({
+            message: "You should provide starting and ending date of the period!"
+        });
+        return;
+    }
+
+    if (req.body.startDate > req.body.endDate || !moment(req.body.endDate, 'YYYYMMDD', true).isValid() || !moment(req.body.startDate, 'YYYYMMDD', true).isValid()) {
+        res.status(400).send({
+            message: 'Invalid dates!'
+        });
+        return;
+    }
+
+    if (!req.body.word) {
+        res.status(400).send({
+            message: "You should provide the keyword!"
+        });
+        return;
+    }
+
+    let temp_keyword = req.body.word.toLowerCase();
+
+    question.findAll({
+        where: {questionedOn: {[Op.between]: [req.body.startDate, req.body.endDate]}},
+        include: [{
+            model: answer, required: false,
+            attributes: ['text', 'answeredOn']
+        }, {
+            model: keyword, required: true, attributes: ['word'],
+            where: {word: temp_keyword},
+            through: {
+                model: questionHasKeyword, attributes: []
+            }
+        }]
+    })
+        .then(data => {
+            if (data) {
+                res.send(data)
+            }
+            else {
+                res.status(401).json({message: "Invalid dates or word!"})
+            }
+        })
+        .catch(() => res.status(401).json({
+            message: "Invalid dates or word!"
+        }));
+};
+
 exports.findAllByDate = (req, res) => {
     if (!req.body.startDate || !req.body.endDate) {
         res.status(400).send({
