@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import "./App.css";
+import Image4 from './logo4.png'
 
 import AuthService from "./services/auth.service";
 
@@ -29,24 +30,30 @@ const App = () => {
 
   return (
     <>
+      <div className="logo-container">
+        <Link to={"/"}><img src={Image4} className="logo-img"></img></Link>
+      </div>     
       <header>
         <ul className="navbar">
-            <li><Link to={"/"} className="navbar-brand">Logo</Link></li>
-            <li><Link to={"/home"} className="nav-link">Home</Link></li>
-            <li><Link to={() => currentUser ? "/ask" : "/login"}>Ask Question</Link></li>
-            <li><Link to={"/answer/1"}>Answer Question</Link></li>
-            <li><Link to={"/questions"}>Browse Questions</Link></li>
+            <li className="nav-btns">
+              <ul>
+                <li><Link to={"/home"} className="nav-link">Home</Link></li>
+                <li><Link to={() => currentUser ? "/ask" : "/login"}>Ask Question</Link></li>
+                <li><Link to={"/questions"}>Browse Questions</Link></li>
+              </ul>
+            </li> 
+            
             {currentUser ? (
             <li className="auth-btns">
               <ul>
                   <li className="nav-item">
-                    <Link to={"/profile"} className="nav-link">
-                      {currentUser.username}
+                    <Link to={"/profile"} className="nav-link" style={{color: "#DBCD18"}}>
+                      {currentUser.username}'s
                     </Link>
                   </li>
                   <li className="nav-item">
                     <a href="/home" className="nav-link" onClick={logOut}>
-                      LogOut
+                      Logout
                     </a>
                   </li>
                 </ul>
@@ -70,12 +77,12 @@ const App = () => {
             )}
         </ul>
       </header>
-            
-      <div className="container mt-3">
+
+      <div className="body-container container mt-3">
         <Switch>
           <Route exact path={["/", "/home"]} component={Home} />
           <Route exact path="/answer/:id"><Answer currentUser={currentUser}/></Route>
-          <Route exact path="/ask" component={Ask} />
+          <Route exact path="/ask" ><Ask userId={currentUser ? currentUser.user.id : ""}></Ask></Route>
           <Route exact path="/questions"><Browse currentUser={currentUser}/></Route>
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/login" component={Login} />

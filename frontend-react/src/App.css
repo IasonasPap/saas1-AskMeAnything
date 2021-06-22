@@ -1,6 +1,11 @@
 html,body {
   margin: 0px;
+  /* height:100%; */
 }
+
+/* .body-container {
+  position: fixed;
+} */
 
 a {
   text-decoration: none;
@@ -11,22 +16,24 @@ header {
   top: 0;
 }
 .navbar {
-  background-color: #75d289;
+  background-color: #417B50;
   padding: 20px;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow: hidden;  
 }
 
 
-li a {
+header li a {
   display: block;
   color: rgb(252, 248, 248);
   text-align: center;
@@ -35,9 +42,14 @@ li a {
   font-size: 1.2em;
 }
 
-.auth-btns ul{
+.auth-btns ul,.nav-btns ul{
   display: flex;
+  flex-wrap: wrap;
   margin-right: 10px;
+}
+
+.nav-btns li {
+  margin-right: 8px;
 }
 
 .signup {
@@ -62,3 +74,25 @@ li a {
   font-weight: bold;
   font-size: 1.4em;
 }
+
+
+.navbar-brand {
+  font-family: Allan;
+  font-size: 1.5em;
+}
+
+.logo-container {
+  /* background-color: #abbbca; */
+}
+.logo-img {
+  width: 203px;
+  height: 150px;
+  object-fit: none;
+  display: block;
+  margin: 0 0;
+}
+/* img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+} */
