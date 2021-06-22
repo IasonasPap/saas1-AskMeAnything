@@ -16,11 +16,17 @@ router.post("/updatequestiontext", qaQuestionController.updatequestiontext);
 //Find Question By Id
 router.post("/findquestionbyid", qaQuestionController.findById);
 
+//Find Question By UserId
+router.post("/findquestionsbyuserid", qaQuestionController.findQuestionsByUserId);
+
 //Find Question By Date
 router.post("/findquestionbydate", qaQuestionController.findOneByDate);
 
 //Find Questions By Date
 router.post("/findquestionsbydate", qaQuestionController.findAllByDate);
+
+//Find Questions By Date And Keyword
+router.post("/findquestionsbydateandkeyword", qaQuestionController.findAllByDateAndKeyword);
 
 //Find Keywords By Question
 router.post("/findkeywordsbyquestion", qaQuestionController.findKeywordByQuestionId);
