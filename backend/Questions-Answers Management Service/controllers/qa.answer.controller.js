@@ -1,5 +1,5 @@
 const db = require("../../models");
-const {answer, question} = db;
+const {answer, question, keyword, questionHasKeyword} = db;
 
 exports.createanswer = (req, res, next) => {
 
@@ -56,7 +56,41 @@ exports.findAnswersByQuestionId = (req, res) => {
         .catch(() => res.status(401).json({
             message: "Invalid id!"
         }));
-}
+};
+
+exports.findAnswersByUserId = (req, res) => {
+    if (!req.body.userid) {
+        res.status(400).send({
+            message: "You should provide the <userid>!"
+        });
+        return;
+    }
+
+    answer.findAll({
+        where: {userId: req.body.userid},
+        include: [{
+            model: question, required: false,
+            attributes: ['text', 'title', 'questionedOn'],
+            include: [{
+                model: keyword, required: false, attributes: ['word'],
+                through: {
+                    model: questionHasKeyword, attributes: []
+                }
+            }]
+        }]
+    })
+        .then(data => {
+            if (data) {
+                res.send(data)
+            }
+            else {
+                res.status(401).json({message: "Invalid user id!"})
+            }
+        })
+        .catch(() => res.status(401).json({
+            message: "Invalid user id!"
+        }));
+};
 
 exports.updateanswertext = (req, res) => {
     if (!req.body.id || !req.body.text) {
@@ -99,7 +133,7 @@ exports.updateanswertext = (req, res) => {
         .catch(() => res.status(401).json({
             message: "Invalid id!"
         }));
-}
+};
 
 exports.deleteanswer = (req, res) => {
     if (!req.body.id) {
@@ -130,7 +164,7 @@ exports.deleteanswer = (req, res) => {
         .catch(() => res.status(401).json({
             message: `The answer with id=${req.body.id} wasn't found!`
         }));
-}
+};
 
 exports.findAll = (req, res) => {
     answer.findAll()

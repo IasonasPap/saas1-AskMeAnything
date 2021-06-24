@@ -18,4 +18,8 @@ router.post("/findanswersbyquestion", qaAnswerController.findAnswersByQuestionId
 
 router.get("/findanswers", qaAnswerController.findAll);
 
+
+//Find Answers By UserId
+router.post("/findanswersbyuserid", qaAnswerController.findAnswersByUserId);
+
 module.exports = router;
