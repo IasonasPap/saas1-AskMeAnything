@@ -1,3 +1,10 @@
+.change-password {
+}
+
+#old-password {
+    display: inline-block;
+}
+
 .profile-name {
     padding: 28px;
 }
@@ -7,8 +14,6 @@
     align-items: center;
     background-color: #9bc3e9;
 }
-
-
 
 .profile-user ul{
     font-family: Poppins;
@@ -36,4 +41,25 @@
 
 .info {
     font-size: 0.78em;
+}
+
+li {
+    list-style: none;
+}
+
+.answer {
+    background-color: rgb(223, 190, 141);
+    color: black;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    padding: 10px 10px 0 20px;
+}
+
+.answer-text {
+    margin: 10px 0 20px 0;
+}
+
+.edit-container {
+    display: flex;
+    justify-content: space-between;
 }

@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from "react";
-import {useLocation, useParams, Link} from "react-router-dom";
+import {useParams, Link, useHistory} from "react-router-dom";
 
 import "../styling/answerQuestion.css";
 import QuestionsService from "../services/questions.service";
+import AnswersService from "../services/answers.service";
 
-const Question = () => {
+const Question = ({userId}) => {
   const {id} = useParams();
+  const history = useHistory();
   
-  //const location = useLocation();
-  //console.log(location.question.answers);
-  //const {answers,text,title,questionedOn} = location.question;
   const [text,setText] = useState("");
   const [title,setTitle] = useState("");
+  const [keywords,setKeywords] = useState([]);
   const [questionedOn,setQuestionedOn] = useState("");
   const [answers,setAnswers] = useState([]);
   const [answer, setAnswer] = useState("");
+  const [submitted,setSubmitted] = useState(false);
   
   useEffect(()=> {
     QuestionsService.findQuestionById(id).then(
       (response) => {
-        console.log(response);
         setText(response.data.text);
         setTitle(response.data.title);
+        setKeywords(response.data.keywords);
         setQuestionedOn(response.data.questionedOn);
         setAnswers(response.data.answers);
       },
@@ -43,51 +44,86 @@ const Question = () => {
   }
 
   const handleSubmit = (event) => {
-
+    AnswersService.createAnswer(answer,userId,id).then(() => {
+      setSubmitted(true);
+    })
   }
 
+  const handleCancel = () => {
+    history.push("/questions");
+  }
+
+  const handleNewAnswer = () => {
+    setSubmitted(false);
+    setAnswer('');
+  }
 
   return (
     <div className="answer-container">
       <h3>      
           Answer a question
       </h3>
-      <div id="question-to-answer" >
-        <h2>{title}</h2>
-        <div>{text}</div>
-        <div>Asked on {questionedOn}</div>
+      {submitted ? (
+        <div>
+          <h4>Answer Submitted Succesfully</h4>
+          <button onClick={handleNewAnswer}>Give Another Answer</button>
+        </div>
+      ):(
+      !title ?
+      <div className="loader">
       </div>
-      <ul className="answers-container">
-        {answers.map( (question) => 
-        {
-          const {id,title,text,questionedOn} = question;
-          return (
-          <li key={id}>
-          <div id="question" >
-            <Link 
-              to={{pathname: "/answer/"+id, question:{question}}} 
-              className="answer-link"
-            >
-              <h2>{title}</h2>
-            </Link>
-            <div>{text}</div>
-            <div>Asked on {questionedOn}</div>
-          </div>
-          </li>);
-        }
-      )}
-    </ul>
-    <label>Give your answer:</label>
+      : 
+      <>
+      <div className="question">
+        <h2 contentEditable="true">{title}</h2>
+        <div>{text}</div>
+        <ul className="keywords">
+          {
+            keywords.map(({word}) => 
+              <li>{word}</li>
+            )
+          }
+        </ul>
+        <div><span className="small-caps">asked on: </span>{questionedOn}</div>
+      </div>
+
+      <h2>Answers({answers.length})</h2>
+      {answers.length ?
+        (<ul>                    
+            {answers.map(({text,answeredOn}) => 
+              <li className="answer">
+                <div className="answer-text">{text}</div>
+                
+                <div><span className="small-caps">answered on:</span> {answeredOn}</div>
+              </li>
+            )}
+        </ul>
+        ):(
+          []
+        )
+      }
+
+    <h2>Give your answer:</h2>
     <textarea
       id="my-answer"
       label="Multiline"
       multiline
-      rows={10}
+      rows={8}
       variant="outlined"
       onChange={handleChange}
       value={answer}
     />
-  </div>
+    <div className="btns-container">
+      <button className="submit-btn" onClick={handleSubmit}>
+        Submit
+      </button>
+      <button className="cancel-btn" onClick={handleCancel}>
+        Cancel
+      </button>
+    </div>
+    </>
+    )}
+    </div>
   );
 };
 

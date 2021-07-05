@@ -2,9 +2,6 @@
  padding: 30px;
 }
 
-#question-to-answer {
-    background-color: #ffffe4;
-}
 
 .answers-container {
     display: flex;
@@ -12,7 +9,20 @@
     justify-content: center;
 }
 
-#my-answer {
-    background-color: #ffffe4;
-    border: black;
+.answer {
+        background-color: rgb(223, 190, 141);
+        color: black;
+        margin-bottom: 20px;
+        border-radius: 7px;
+        padding: 10px 10px 0 20px;
+}
+
+
+.question {
+    background-color: rgb(223, 190, 141);
+    background-color: #eaf5e9;
+    color: black;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    padding: 10px 10px 0 20px;
 }

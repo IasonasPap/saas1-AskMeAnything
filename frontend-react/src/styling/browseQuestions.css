@@ -8,16 +8,35 @@ a {
 .browse-container {
     display: flex;
     flex-wrap: wrap;
+    flex:1;
+    height: 100%;
+  min-height: 100%;
     justify-content: stretch;    
     background-color: #9bc3e9;
+    flex-grow: 1;
+}
+.dody-container {
+    flex:1;
+    height: 100%;
+  min-height: 100%;
+  flex-grow: 1;
+}
+#filter-heading {
+    flex: 1;
+    margin-top: 0;
+    margin-bottom: 35px;
 }
 
 .filter-container {
     /* background-color: rgba(177, 168, 168, 0.246); */
     display: flex;
-    justify-content:unset;
-    padding: 20px;
-    border: black thin solid;
+    flex: 1;
+    height: 100%;
+  min-height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 55px 20px 0 20px;
     /* box-shadow: 0 1px 5px -1px rgb(0 0 0 / 13%); */
 }
 
@@ -34,8 +53,24 @@ a {
 }
 
 .filter-by-keyword {
-    border-left: black solid thin;
+    margin-top: 50px;
     padding-left: 10px;
+}
+
+.side-container {
+    display: flex;
+    flex: 1;
+    position: sticky;
+    top: 89.7px;
+    height: 100%;
+  min-height: 100%;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.btns-container {
+    flex: 1;
+    margin-top: 1.6em;
 }
 
 .questions-container {
@@ -80,25 +115,39 @@ a {
     color: #417B50;
 }
 
-.side-stats {
-    display: flex;
-    flex: 1;
-    height: 100%;
-    position: sticky;
-    top: 89.7px;
-    height: 100%;
+#date {
+    background-color: white;
+    border-radius: 3px;
 }
-.stats-container {
-    height: 100%;
+
+#keyword-input {
+    border: none;
+    border-radius: 3px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.1876em;
+    padding: 6px 0 7px 4px;
+}
+
+.filter-by-date-container {
     flex: 1;
+    width: 100%;
+    padding: 1.6em 0;
+    border-top: thin solid;
+}
+
+.filter-by-keyword-container {
+    flex: 1;
+    width: 100%;
+    padding: 1.6em 0;
+    border-top: thin solid;
+    border-bottom: thin solid;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    /* background-color: #9bc3e9; */
-    position: sticky;
-    
 }
 
-/* .stat {
-} */
-
+.small-caps {
+    font-variant: small-caps;
+}

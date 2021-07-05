@@ -31,14 +31,16 @@
     "validator": "^13.6.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.8"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "mocha --timeout 10000 --delay --exit",
     "eject": "react-scripts eject",
-    "server": "nodemon ./backend/server.js"
+    "qa-server": "nodemon ./backend/'Questions-Answers Management Service'/server.js",
+    "auth-server": "nodemon ./backend/'Authenticator Service'/server.js",
+    "stats-server": "nodemon ./backend/'Statistics Service'/server.js"
   },
   "eslintConfig": {
     "extends": [
