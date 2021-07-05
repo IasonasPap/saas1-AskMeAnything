@@ -1,0 +1,39 @@
+.stats-container {
+    background-image: url("../blackboard-yellow-question.jpeg");
+    /* background-image: url("../white-back-yellow-question.jpeg"); */
+    
+    /* width:200px; */
+    background-repeat: repeat;
+    background-size: 100% 105%;
+    object-fit: fill;
+}
+
+.stats-container {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    /* background-color: #9bc3e9; */
+    position: sticky;
+    
+}
+
+.stats-container {
+    align-items: center;
+    justify-content: flex-start;
+    align-content: center;
+    padding: 80px;
+}
+
+.stats-container ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    font-size: 2.2em;
+    color: whitesmoke
+}
+
+

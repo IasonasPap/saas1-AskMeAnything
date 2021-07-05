@@ -86,7 +86,7 @@ export default function Question({userId}) {
           id="outlined-multiline-static"
           label="Multiline"
           multiline
-          rows={2}
+          rows={1}
           variant="outlined"
           onChange={handleTitleChange}
           value={title}
@@ -96,7 +96,7 @@ export default function Question({userId}) {
           id="outlined-multiline-static"
           label="Multiline"
           multiline
-          rows={10}
+          rows={8}
           variant="outlined"
           onChange={handleTextChange}
           value={text}
@@ -107,7 +107,7 @@ export default function Question({userId}) {
           label="Multiline"
           placeholder="Keywords seperated with commas"
           multiline
-          rows={2}
+          rows={1}
           onChange={handleKeywordsChange}
           value={keywordsString}
           variant="outlined"

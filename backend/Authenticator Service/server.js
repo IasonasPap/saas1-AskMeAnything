@@ -31,8 +31,8 @@ const options = {
     cert: fs.readFileSync('backend/server.crt')
 };
 
-https.createServer(options, app)
-    .listen(4000, function () {
+//https.createServer(options, app)
+app.listen(4000, function () {
         console.log('App listening on port 4000! Go to https://localhost:4000/')
     });
 

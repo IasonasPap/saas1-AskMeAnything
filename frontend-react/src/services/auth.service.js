@@ -1,9 +1,9 @@
 import axios from "axios";
 
-//const API_URL = "http://localhost:5000/api/auth/";
+const API_URL = "http://localhost:4000/";
 
 const register = (username, email, password, fullName) => {
-  return axios.post("https://localhost:4000/saas1/user/signup/", {
+  return axios.post(API_URL + "saas1/user/signup/", {
     username,    
     password,
     email,
@@ -13,7 +13,7 @@ const register = (username, email, password, fullName) => {
 
 const login = (username, password) => {
   return axios
-    .post("https://localhost:4000/saas1/signin/", {
+    .post(API_URL + "saas1/signin/", {
       username,
       password,
     })
@@ -36,9 +36,14 @@ const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
 
+const getAllUsers = (userid) => {
+  return axios.get(API_URL + "saas1/user/findusers/",{userid});
+};
+
 export default {
   register,
   login,
   logout,
   getCurrentUser,
+  getAllUsers,
 };

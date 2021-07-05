@@ -11,6 +11,7 @@ import Home from "./components/home.component.js";
 import Profile from "./components/profile.component.js";
 import Answer from "./components/answer.component.js";
 import Ask from "./components/askQuestion.component.js";
+import Edit from "./components/edit.component.js";
 import Browse from "./components/browseQuestions.component.js";
 
 const App = () => {
@@ -81,7 +82,8 @@ const App = () => {
       <div className="body-container container mt-3">
         <Switch>
           <Route exact path={["/", "/home"]} component={Home} />
-          <Route exact path="/answer/:id"><Answer currentUser={currentUser}/></Route>
+          <Route exact path="/answer/:id"><Answer userId={currentUser ? currentUser.user.id : ""}/></Route>
+          <Route exact path="/edit/:id"><Edit currentUser={currentUser}/></Route>
           <Route exact path="/ask" ><Ask userId={currentUser ? currentUser.user.id : ""}></Ask></Route>
           <Route exact path="/questions"><Browse currentUser={currentUser}/></Route>
           <Route exact path="/profile" component={Profile} />

@@ -1,5 +1,8 @@
 textarea {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-size: 1.3em;
     width: 100%;
+    padding: 5px;
     margin-bottom: 20px;
     border:turquoise;
     border-radius: 2px;
@@ -35,5 +38,6 @@ button:hover {
 }
 
 .submit-btn {
+    margin-top: 0;
     margin-right: 40px;
 }

@@ -2,14 +2,29 @@ import axios from "axios";
 import authHeader from "./auth-header.service";
 
 const createQuestion = (question) => {
-    return axios.post("https://localhost:5000/qa/question/createquestion", question);
+    return axios.post("http://localhost:5000/qa/question/createquestion", question);
   };
   
 const findQuestionById = (id) => {
-  return axios.post("https://localhost:5000/qa/question/findquestionbyid", { id });
+  return axios.post("http://localhost:5000/qa/question/findquestionbyid", { id });
+};
+
+const filterQuestionsByKeywordAndDate = (startDate, endDate, word) => {
+  return axios.post("http://localhost:5000/qa/question/findquestionsbydateandkeyword", {startDate, endDate, word});
+};
+
+const filterQuestionsByKeyword = (word) => {
+  return axios.post("http://localhost:5000/qa/question/findquestionsbykeyword", {word});
+};
+
+const filterQuestionsByDate = (startDate, endDate) => {
+  return axios.post("http://localhost:5000/qa/question/findquestionsbydate", {startDate, endDate});
 };
   
 export default {
   createQuestion,
-  findQuestionById
+  findQuestionById,
+  filterQuestionsByKeywordAndDate,
+  filterQuestionsByKeyword,
+  filterQuestionsByDate
 };
