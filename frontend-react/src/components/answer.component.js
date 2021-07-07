@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useParams, Link, useHistory} from "react-router-dom";
+import {useParams, useHistory} from "react-router-dom";
 
 import "../styling/answerQuestion.css";
 import QuestionsService from "../services/questions.service";
@@ -34,8 +34,6 @@ const Question = ({userId}) => {
         error.message ||
         error.toString();
           console.log(resMessage);
-      // setMessage(resMessage);
-      // setSuccessful(false);
     })
   },[])
 

@@ -35,12 +35,10 @@ const Browse = ({currentUser}) => {
 
     UserService.getPublicContent().then(
       (response) => {
-        console.log("OK");
         setAllQuestions(response.data);
         setContent(response.data);
       },
       (error) => {
-        console.log("ERROR");
         const _content =
           (error.response && error.response.data) ||
           error.message ||

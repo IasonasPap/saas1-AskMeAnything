@@ -3,7 +3,7 @@ export default function authHeader() {
   
     if (user && user.token) {
       // for Node.js Express back-end
-      return { 'x-access-token': user.token };
+      return { 'x-observatory-auth': user.token };
     } else {
       return {};
     }

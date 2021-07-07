@@ -1,13 +1,13 @@
-import React from 'react';
+import React,{useState} from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import {Link} from "react-router-dom";
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import MyQuestion from './myQuestion.component';
 
 function TabPanel(props) {
   const {children, value, index, ...other } = props;
@@ -49,10 +49,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FullWidthTabs({ myQuestions}) {
+export default function FullWidthTabs({myQuestions}) {
+  
   const classes = useStyles();
   const theme = useTheme();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -83,54 +84,10 @@ export default function FullWidthTabs({ myQuestions}) {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-        {myQuestions.map( (question) => 
-            {
-              const {id,title,text,questionedOn,keywords,answers} = question;
-              return (
-              <li key={id}>
-                <div id="question" >
-                  <div className="edit-container">
-                    <Link 
-                      to={{pathname: "/answer/"+id}} 
-                      className="answer-link"
-                    >
-                      <h2 className="title">{title}</h2>
-                    </Link>
-                    <Link 
-                      to={{pathname: "/edit/"+id, question}} 
-                      className="answer-link">
-                      <i className='fas fa-pen' style={{fontSize:"20px",color:"grey"}}>edit</i>
-                    </Link>                  
-                  </div>
-                  
-                  <div>{text}</div>
-                  <ul className="keywords">
-                    {
-                      keywords.map(({word}) => 
-                        <li>{word}</li>
-                      )
-                    }
-                  </ul>
-                  <div><span className="small-caps">answered on: </span> {questionedOn}</div>
-                  
-                </div>
-                <h2>Answers({answers.length})</h2>
-                {answers.length ?
-                  (<ul>                    
-                      {answers.map(({text,answeredOn}) => 
-                        <li className="answer">
-                          <div className="answer-text">{text}</div>
-                          <div><span className="small-caps">asked on: </span> {answeredOn}</div>
-                        </li>
-                      )}
-                  </ul>
-                  ):(
-                    []
-                  )
-                  }
-              </li>);
-            }
-          )}
+        {(typeof myQuestions == "string") 
+        ? myQuestions 
+        : (myQuestions.map( (question) => <MyQuestion {...question} />))
+        }
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           A

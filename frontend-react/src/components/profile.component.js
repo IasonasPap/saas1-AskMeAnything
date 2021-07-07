@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {useHistory} from "react-router-dom"
 import FullWidthTabs from "./tabPanel.component.js";
 import AuthService from "../services/auth.service.js";
 import UserService from "../services/user.service.js";
@@ -6,15 +7,75 @@ import "../styling/profile.css";
 
 const Profile = () => {
 
-  const {user} = AuthService.getCurrentUser();
-  const {id,username,fullName,email} = user;
+  const history = useHistory();
+  const [currentUser, setCurrentUser] = useState(undefined);
   const [myQuestions,setMyQuestions] = useState([]);
-  const [changePassword, setChangePassword] = useState(false);
+  const [newPassword,setNewPassword] = useState("");
+  const [repeatNewPassword,setRepeatNewPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
-    UserService.getUserQuestions(id).then(
-      (response) => {
-        setMyQuestions(response.data);
+    const user = AuthService.getCurrentUser();
+
+    if (user) {
+      setCurrentUser(user);
+      UserService.getUserQuestions(user.user.id).then(
+        (response) => {
+          setMyQuestions(response.data);
+        },
+        (error) => {
+          const _content =
+            (error.response && error.response.data) ||
+            error.message ||
+            error.toString();
+  
+          setMyQuestions(_content);
+        }
+      );
+    }
+    
+  }, []);
+
+  const handleNewPasswordChange = (event) => setNewPassword(event.target.value)
+
+  const handleRepeatNewPasswordChange = (event) => {
+    if(newPassword !== event.target.value) {
+      setMessage("Both passwords should match !")
+    } else {
+      setMessage("")
+    }
+    setRepeatNewPassword(event.target.value)
+  }
+
+  const handleSubmit = () => {    
+    if(newPassword !== repeatNewPassword) {
+      setMessage("Both passwords should match !")
+    } else {
+      AuthService.updatePassword(currentUser.username,newPassword).then(
+        () => {
+          handleExit();
+        }
+      );
+    }
+  }
+
+  const handleSettings = () => {
+    const profileSettings = document.getElementById("profile-settings");
+    profileSettings.style.display = "block";
+  }
+
+  const handleExit = () => {
+    const profileSettings = document.getElementById("profile-settings");
+    profileSettings.style.display = "none";
+  }
+
+  const handleDelete = () => {
+    AuthService.deleteCurrentUser(currentUser.username).then(
+      () => {
+        AuthService.logout()
+        history.push("/home");
+        window.location.reload();
+        
       },
       (error) => {
         const _content =
@@ -25,50 +86,74 @@ const Profile = () => {
         setMyQuestions(_content);
       }
     );
-  }, []);
-
-  const handleChangePassword = () => {
-    setChangePassword(true);
-  }
-  const handleCancel = () => {
-    setChangePassword(false);
   }
 
   return (
-    <div className="profile-container">
+    (!currentUser ? (<div>Loading...</div>) :
+    (<div className="profile-container">
       <div className="profile-name">
-        {user.username + "'s profile"}
+        <h2>{currentUser.username + "'s profile"}</h2>       
+        <i className="fa fa-gear" style={{fontSize:"24px"}} onClick={handleSettings}></i>
+      </div>
+      <div className="settings-container" id="profile-settings">
+        <div className="modal-content">
+          <span className="close" onClick={handleExit}>&times;</span>
+          <h1 style={{textAlign:"center"}}>Profile Settings</h1>
+          
+              <div className="settings">
+              <h4><i className="fa fa-lock" style={{fontSize:"15px"}}></i> change password</h4>
+              <div className="change-password">
+                <div className="feature-body">
+                  <label> New Password </label>
+                  <input 
+                    type="password" 
+                    value={newPassword} 
+                    onChange={handleNewPasswordChange}
+                    id="new-password"
+                    placeholder="New Password"
+                  />
+
+                  <label> Repeat New Password </label>
+                  <input 
+                    type="password" 
+                    value={repeatNewPassword} 
+                    onChange={handleRepeatNewPasswordChange}
+                    id="repeat-new-password"
+                    placeholder="Repeat New Password"
+
+                  />
+                </div>
+                {message && (
+                <div className="form-group">
+                  <div className="alert alert-danger" role="alert">
+                    {message}
+                  </div>
+                </div>
+                )}
+
+                <button className="submit-btn" onClick={handleSubmit}>
+                  Submit
+                </button>
+              </div>
+              <h4><i className="fa fa-close" style={{fontSize:"15px"}}></i> delete my profile</h4>
+              <button className="cancel-btn delete-user-btn" onClick={handleDelete}>
+                Delete Profile
+              </button>
+              </div>
+        </div>
+
       </div>
       <div className="profile-info">
         <div className="profile-user">
           <ul>
             <li>
-              <h3>username: <span className="info">{username}</span></h3>
+              <h3>username: <span className="info">{currentUser.user.username}</span></h3>
             </li>
             <li>
-              <h3>fullname: <span className="info">{fullName}</span></h3>
+              <h3>fullname: <span className="info">{currentUser.user.fullName}</span></h3>
             </li>
             <li>
-              <h3>email: <span className="info">{email}</span></h3>
-            </li>
-            <li>
-              <h4 onClick={handleChangePassword}><i class="fa fa-lock" style={{fontSize:"15px"}}></i> change password</h4>
-              
-              {changePassword && 
-              <div className="change-password">
-                <div class="feature-body">
-                <label for="old-password"> Old Password </label>
-                <input type="password" autocomplete="new-password" id="old-password" maxlength="99" placeholder="Old Password"/>
-                </div>
-                <button className="submit-btn">
-                Submit
-              </button>
-              <button className="cancel-btn" onClick={handleCancel}>
-                Cancel
-              </button>
-              </div>
-              
-              }
+              <h3>email: <span className="info">{currentUser.user.email}</span></h3>
             </li>
           </ul>
         </div>
@@ -96,7 +181,7 @@ const Profile = () => {
         <FullWidthTabs myQuestions={myQuestions}></FullWidthTabs>
       </div>
 
-    </div>
+    </div>))
   );
 };
 

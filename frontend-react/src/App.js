@@ -23,6 +23,7 @@ const App = () => {
     if (user) {
       setCurrentUser(user);
     }
+
   }, []);
 
   const logOut = () => {
