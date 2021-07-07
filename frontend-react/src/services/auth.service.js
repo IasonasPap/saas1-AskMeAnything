@@ -1,4 +1,5 @@
 import axios from "axios";
+import authHeader from "./auth-header.service";
 
 const API_URL = "http://localhost:4000/";
 
@@ -32,12 +33,20 @@ const logout = () => {
   localStorage.removeItem("user");
 };
 
+const getAllUsers = (userid) => {
+  return axios.get(API_URL + "saas1/user/findusers/",{userid});
+};
+
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
 
-const getAllUsers = (userid) => {
-  return axios.get(API_URL + "saas1/user/findusers/",{userid});
+const deleteCurrentUser = (username) => {
+  return axios.post(API_URL + "saas1/user/deleteuser/",{username},{headers: authHeader()});
+};
+
+const updatePassword = (username,password) => {
+  return axios.post(API_URL + "saas1/user/updatepassword/",{username,password},{headers: authHeader()});
 };
 
 export default {
@@ -46,4 +55,6 @@ export default {
   logout,
   getCurrentUser,
   getAllUsers,
+  deleteCurrentUser,
+  updatePassword
 };

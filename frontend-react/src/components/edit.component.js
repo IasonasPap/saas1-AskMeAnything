@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useLocation, useParams, Link} from "react-router-dom";
+import {useParams, Link} from "react-router-dom";
 
 import "../styling/answerQuestion.css";
 import QuestionsService from "../services/questions.service";
@@ -7,9 +7,6 @@ import QuestionsService from "../services/questions.service";
 const Edit = () => {
   const {id} = useParams();
   
-  //const location = useLocation();
-  //console.log(location.question.answers);
-  //const {answers,text,title,questionedOn} = location.question;
   const [text,setText] = useState("");
   const [title,setTitle] = useState("");
   const [questionedOn,setQuestionedOn] = useState("");
@@ -42,9 +39,9 @@ const Edit = () => {
     setAnswer(event.target.value);
   }
 
-  const handleSubmit = (event) => {
+  // const handleSubmit = (event) => {
 
-  }
+  // }
 
 
   return (

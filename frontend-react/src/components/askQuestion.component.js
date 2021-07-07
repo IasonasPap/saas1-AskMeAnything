@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react';
-import {Link, useHistory} from "react-router-dom";
+import React from 'react';
+import {useHistory} from "react-router-dom";
 import "../styling/askQuestion.css";
 
 import QuestionsService from "../services/questions.service";
 
-const required = (value) => {
-  if (!value) {
-    return (
-      <div className="alert" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
+// const required = (value) => {
+//   if (!value) {
+//     return (
+//       <div className="alert" role="alert">
+//         This field is required!
+//       </div>
+//     );
+//   }
+// };
 
 export default function Question({userId}) {
   const history = useHistory();
