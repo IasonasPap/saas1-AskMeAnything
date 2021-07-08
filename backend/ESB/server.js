@@ -80,7 +80,6 @@ app.post("/esb/authorize", async (req, res) => {
             pool.hget('subscribers', 'authorize', (err, data) => {
                 let subscribers = JSON.parse(data);
                 for (let i = 0; i < subscribers.length; i++){
-                    console.log(subscribers[i])
                     axios({
                         "url": subscribers[i],
                         "method": "post",
