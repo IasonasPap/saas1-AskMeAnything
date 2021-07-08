@@ -14,18 +14,19 @@ const Home = () => {
 
   useEffect(() => {    
 
-    AuthenticationService.getAllUsers().then(
+    AuthenticationService.getNumberOfUsers()().then(
       (response) => {
-        setNumberOfUsers(response.data.length);
+        setNumberOfUsers(response.data.count);
       },
       (error) => {
         setNumberOfUsers(-1);
       }
     );
 
-    AnswersService.getAllAnswers().then(
+    AnswersService.getNumberOfAnswers().then(
       (response) => {
-        setNumberOfAnswers(response.data.length);
+        console.log(response.data);
+        setNumberOfAnswers(response.data.count);
       },
       (error) => {
         // const _content =
@@ -37,10 +38,9 @@ const Home = () => {
       }
     );
 
-    UserService.getAllQuestions().then(
+    UserService.getNumberOfQuestions().then(
       (response) => {
-        setQuestions(response.data);
-        setNumberOfQuestions(response.data.length);
+        setNumberOfQuestions(response.data.lengthcount);
       },
       (error) => {
         const _content =

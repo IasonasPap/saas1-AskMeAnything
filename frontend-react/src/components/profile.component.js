@@ -10,6 +10,7 @@ const Profile = () => {
   const history = useHistory();
   const [currentUser, setCurrentUser] = useState(undefined);
   const [myQuestions,setMyQuestions] = useState([]);
+  const [myAnswers,setMyAnswers] = useState([]);
   const [newPassword,setNewPassword] = useState("");
   const [repeatNewPassword,setRepeatNewPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -30,6 +31,20 @@ const Profile = () => {
             error.toString();
   
           setMyQuestions(_content);
+        }
+      );
+
+      UserService.getUserAnswers(user.user.id).then(
+        (response) => {
+          setMyAnswers(response.data);
+        },
+        (error) => {
+          const _content =
+            (error.response && error.response.data) ||
+            error.message ||
+            error.toString();
+  
+          setMyAnswers(_content);
         }
       );
     }
@@ -95,6 +110,7 @@ const Profile = () => {
         <h2>{currentUser.username + "'s profile"}</h2>       
         <i className="fa fa-gear" style={{fontSize:"24px"}} onClick={handleSettings}></i>
       </div>
+      
       <div className="settings-container" id="profile-settings">
         <div className="modal-content">
           <span className="close" onClick={handleExit}>&times;</span>
@@ -161,16 +177,12 @@ const Profile = () => {
         <div className="profile-stats">
           <ul>
             <li>
-              <h1>1</h1>
+              <h1>{myQuestions.length}</h1>
               <i>questions</i>
             </li>
             <li id="my-answers">
-              <h1>2</h1>
+              <h1>{myAnswers.length}</h1>
               <i>answers</i>
-            </li>
-            <li>
-              <h1>3</h1>
-              <i>asns</i>
             </li>
           </ul>
         </div>
@@ -178,7 +190,7 @@ const Profile = () => {
       </div>
 
       <div className="profile-questions">
-        <FullWidthTabs myQuestions={myQuestions}></FullWidthTabs>
+        <FullWidthTabs myQuestions={myQuestions} myAnswers={myAnswers}></FullWidthTabs>
       </div>
 
     </div>))
