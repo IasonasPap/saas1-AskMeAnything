@@ -16,8 +16,13 @@ const getUserQuestions = (userid) => {
   return axios.post(API_URL + "qa/question/findquestionsbyuserid",{userid});
 };
 
+const getUserAnswers = (userid) => {
+  return axios.post(API_URL + "qa/answer/findanswersbyuserid",{userid});
+};
+
 export default {
   getPublicContent,
   getUserQuestions,
-  getAllQuestions
+  getAllQuestions,
+  getUserAnswers
 };

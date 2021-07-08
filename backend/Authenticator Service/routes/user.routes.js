@@ -14,4 +14,6 @@ router.post("/deleteuser", auth, usersController.deleteuser);
 
 router.get("/findusers", usersController.findAll);
 
+router.get('/countusers', usersController.findLength);
+
 module.exports = router;

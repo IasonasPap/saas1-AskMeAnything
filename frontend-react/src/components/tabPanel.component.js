@@ -8,6 +8,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import MyQuestion from './myQuestion.component';
+import MyAnswer from './myAnswer.component';
 
 function TabPanel(props) {
   const {children, value, index, ...other } = props;
@@ -49,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FullWidthTabs({myQuestions}) {
+export default function FullWidthTabs({myQuestions,myAnswers}) {
   
   const classes = useStyles();
   const theme = useTheme();
@@ -84,13 +85,16 @@ export default function FullWidthTabs({myQuestions}) {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-        {(typeof myQuestions == "string") 
-        ? myQuestions 
-        : (myQuestions.map( (question) => <MyQuestion {...question} />))
-        }
+          {(typeof myQuestions == "string") 
+          ? myQuestions 
+          : (myQuestions.map( (question) => <MyQuestion {...question} />))
+          }
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          A
+          {(typeof myAnswers == "string") 
+          ? myAnswers 
+          : (myAnswers.map( (answer) => <MyAnswer {...answer} />))
+          }
         </TabPanel>
       </SwipeableViews>
     </div>
