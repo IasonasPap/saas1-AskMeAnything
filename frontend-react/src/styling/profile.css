@@ -7,6 +7,10 @@
     letter-spacing: 0.00938em;
 }
 
+#flex-end {
+    justify-content: flex-end;
+}
+
 #change-text {
     font-size: 1rem;
     width: 80%;

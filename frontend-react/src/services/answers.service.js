@@ -11,8 +11,13 @@ const getAllAnswers = () => {
   return axios.get(API_URL + "qa/answer/findanswers");
 };
 
+const getNumberOfAnswers = () => {
+  return axios.get(API_URL + "qa/answer/countanswers");
+};
+
   
 export default {
   createAnswer,
-  getAllAnswers
+  getAllAnswers,
+  getNumberOfAnswers
 };
