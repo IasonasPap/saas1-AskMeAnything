@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import UserService from "../services/user.service";
+import QuestionsService from "../services/questions.service";
 import AuthenticationService from "../services/auth.service";
 import AnswersService from "../services/answers.service";
 
@@ -14,7 +15,7 @@ const Home = () => {
 
   useEffect(() => {    
 
-    AuthenticationService.getNumberOfUsers()().then(
+    AuthenticationService.getNumberOfUsers().then(
       (response) => {
         setNumberOfUsers(response.data.count);
       },
@@ -38,7 +39,7 @@ const Home = () => {
       }
     );
 
-    UserService.getNumberOfQuestions().then(
+    QuestionsService.getNumberOfQuestions().then(
       (response) => {
         setNumberOfQuestions(response.data.lengthcount);
       },

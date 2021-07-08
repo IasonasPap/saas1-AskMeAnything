@@ -103,6 +103,12 @@ const Profile = () => {
     );
   }
 
+  const handleDeleteAnswer = () => {
+    console.log("DELETE ANSWER")
+    const profileSettings = document.getElementById("accept-delete");
+    profileSettings.style.display = "block";
+}
+
   return (
     (!currentUser ? (<div>Loading...</div>) :
     (<div className="profile-container">
@@ -110,7 +116,18 @@ const Profile = () => {
         <h2>{currentUser.username + "'s profile"}</h2>       
         <i className="fa fa-gear" style={{fontSize:"24px"}} onClick={handleSettings}></i>
       </div>
-      
+      <div className="accept-delete-container" id="accept-delete">
+          <div className="accept-delete-content">
+              <h1 style={{textAlign:"center"}}>Are you sure you want to delete it ?</h1>
+
+              <div className="accept-delete">                    
+                  <div>
+                      <button className="submit-btn" onClick>Yes</button>
+                      <button className="submit-btn" onClick={handleDeleteAnswer}>No</button>
+                  </div>
+              </div>
+          </div>
+      </div>
       <div className="settings-container" id="profile-settings">
         <div className="modal-content">
           <span className="close" onClick={handleExit}>&times;</span>
@@ -159,6 +176,7 @@ const Profile = () => {
         </div>
 
       </div>
+
       <div className="profile-info">
         <div className="profile-user">
           <ul>
@@ -190,7 +208,7 @@ const Profile = () => {
       </div>
 
       <div className="profile-questions">
-        <FullWidthTabs myQuestions={myQuestions} myAnswers={myAnswers}></FullWidthTabs>
+        <FullWidthTabs handleDeleteAnswer={handleDeleteAnswer} myQuestions={myQuestions} myAnswers={myAnswers}></FullWidthTabs>
       </div>
 
     </div>))

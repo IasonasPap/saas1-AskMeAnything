@@ -4,7 +4,7 @@ import authHeader from "./auth-header.service";
 const API_URL = "http://localhost:4000/";
 
 const register = (username, email, password, fullName) => {
-  return axios.post(API_URL + "saas1/user/signup/", {
+  return axios.post(API_URL + "auth/user/signup/", {
     username,    
     password,
     email,
@@ -14,7 +14,7 @@ const register = (username, email, password, fullName) => {
 
 const login = (username, password) => {
   return axios
-    .post(API_URL + "saas1/signin/", {
+    .post(API_URL + "auth/signin/", {
       username,
       password,
     })
@@ -34,7 +34,7 @@ const logout = () => {
 };
 
 const getAllUsers = (userid) => {
-  return axios.get(API_URL + "saas1/user/findusers/",{userid});
+  return axios.get(API_URL + "auth/user/findusers/",{userid});
 };
 
 const getCurrentUser = () => {
@@ -42,11 +42,11 @@ const getCurrentUser = () => {
 };
 
 const deleteCurrentUser = (username) => {
-  return axios.post(API_URL + "saas1/user/deleteuser/",{username},{headers: authHeader()});
+  return axios.post(API_URL + "auth/user/deleteuser/",{username},{headers: authHeader()});
 };
 
 const updatePassword = (username,password) => {
-  return axios.post(API_URL + "saas1/user/updatepassword/",{username,password},{headers: authHeader()});
+  return axios.post(API_URL + "auth/user/updatepassword/",{username,password},{headers: authHeader()});
 };
 
 const getNumberOfUsers = () => {

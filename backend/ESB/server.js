@@ -40,26 +40,30 @@ const pool = require('redis-connection-pool')('myRedisPool', {
 console.log("Connected to redis!");
 
 // initializing channels
-pool.hget('bus', 'messages', async(data, err) => {
-    if (!data) {
-        pool.hset('bus', 'messages', JSON.stringify([]), () => {});
-    }
-});
-pool.hget('subscribers', 'authorize', async (err, data) => {
-    if (!data) {
-        pool.hset('subscribers', 'authorize', JSON.stringify([]), () => {});
-    }
-});
-pool.hget('subscribers', 'authorizedQA', async(data, err) => {
-    if (!data) {
-        pool.hset('subscribers', 'authorizedQA', JSON.stringify([]), () => {});
-    }
-});
-pool.hget('subscribers', 'authorizedStat',  async(data, err) => {
-    if (!data) {
-        pool.hset('subscribers', 'authorizedStat', JSON.stringify([]), () => {});
-    }
-});
+pool.hset('bus', 'messages', JSON.stringify([]), () => {});
+pool.hset('subscribers', 'authorize', JSON.stringify([]), () => {});
+pool.hset('subscribers', 'authorizedQA', JSON.stringify([]), () => {});
+pool.hset('subscribers', 'authorizedStat', JSON.stringify([]), () => {});
+
+// pool.hget('bus', 'messages', async(data, err) => {
+//     if (!data) {
+        
+//     }
+// });
+// pool.hget('subscribers', 'authorize', async (err, data) => {
+//     if (!data) {
+//     }
+// });
+// pool.hget('subscribers', 'authorizedQA', async(data, err) => {
+//     if (!data) {
+        
+//     }
+// });
+// pool.hget('subscribers', 'authorizedStat',  async(data, err) => {
+//     if (!data) {
+        
+//     }
+// });
 
 //setup esb endpoints and functionalities
 
