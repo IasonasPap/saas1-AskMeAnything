@@ -12,7 +12,7 @@ router.post("/updatepassword", auth, usersController.updatepassword);
 //Delete User
 router.post("/deleteuser", auth, usersController.deleteuser);
 
-router.get("/findusers", usersController.findAll);
+router.get("/findusers", auth, usersController.findAll);
 
 router.get('/countusers', usersController.findLength);
 
