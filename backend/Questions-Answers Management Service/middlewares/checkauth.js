@@ -20,8 +20,9 @@ module.exports = (req, res, next) => {
                 next()
             })
             .catch(e => {
-                //res.send({'error': e.message})
-                next()
+                res.status(401).json({
+                    message: "A problem with authentication occured!"
+                });
             });
     }
 };
