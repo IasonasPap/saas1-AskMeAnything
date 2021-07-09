@@ -67,9 +67,9 @@ const options = {
     cert: fs.readFileSync('backend/server.crt')
 };
 
-https.createServer(options, app)
-    .listen(5001, function () {
-        console.log('App listening on port 5001! Go to https://localhost:5001/')
+// https.createServer(options, app)
+    app.listen(5001, function () {
+        console.log('App listening on port 5001! Go to http://localhost:5001/')
     });
 
 module.exports = app;

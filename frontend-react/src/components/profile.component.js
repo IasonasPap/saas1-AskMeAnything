@@ -64,8 +64,9 @@ const Profile = () => {
     setRepeatNewPassword(event.target.value)
   }
 
-  const handleSubmit = () => {    
-    if(newPassword !== repeatNewPassword) {
+  const handleSubmit = () => {
+    if(newPassword === "") setMessage("No password provided !")
+    else if (newPassword !== repeatNewPassword) {
       setMessage("Both passwords should match !")
     } else {
       AuthService.updatePassword(currentUser.username,newPassword).then(
@@ -77,17 +78,27 @@ const Profile = () => {
   }
 
   const handleSettings = () => {
+    console.log("OPEN SETTINGS")
     const profileSettings = document.getElementById("profile-settings");
     profileSettings.style.display = "block";
   }
 
+  const handleDeleteAnswer = (answerId) => {
+    console.log("DELETE ANSWER")
+    const profileSettings = document.getElementById("accept-delete-answer");
+    profileSettings.style.display = "block";
+    setAnswerId(answerId);
+  }
+
   const handleExit = () => {
+    console.log("EXIT PROFILE SETTINGS")
     const profileSettings = document.getElementById("profile-settings");
     profileSettings.style.display = "none";
   }
 
   const handleCancel = () => {
-    const profileSettings = document.getElementById("accept-delete");
+    console.log("CANCEL DELETE ANSWER")
+    const profileSettings = document.getElementById("accept-delete-answer");
     profileSettings.style.display = "none";
   }
 
@@ -110,16 +121,10 @@ const Profile = () => {
     );
   }
 
-  const handleDeleteAnswer = (answerId) => {
-    const profileSettings = document.getElementById("accept-delete");
-    profileSettings.style.display = "block";
-    setAnswerId(answerId);
-  }
-
   const handleDeleteAnswerAccepted = () => {
     AnswersService.deleteAnswer(answerId).then(
       () => {
-        const profileSettings = document.getElementById("accept-delete");
+        const profileSettings = document.getElementById("accept-delete-answer");
         profileSettings.style.display = "none";
         window.location.reload();
       }
@@ -134,7 +139,7 @@ const Profile = () => {
         <i className="fa fa-gear" style={{fontSize:"24px"}} onClick={handleSettings}></i>
       </div>
 
-      <div className="accept-delete-container" id="accept-delete">
+      <div className="accept-delete-container" id="accept-delete-answer">
           <div className="accept-delete-content">
               <h1 style={{textAlign:"center"}}>Are you sure you want to delete it ?</h1>
 

@@ -43,7 +43,7 @@ const MyAnswer = ({answer,handleDeleteAnswer}) => {
                         </div>)
                     : (<div>
                             <i className='fas fa-pen underline' style={{ fontSize: "20px", color: "grey" }} onClick={handleEditAnswer}>edit</i>
-                            <i className="fa fa-close underline" style={{ fontSize: "20px", color: "red", marginLeft: "15px" }} onClick={handleDeleteAnswer(id)}> delete answer</i>
+                            <i className="fa fa-close underline" style={{ fontSize: "20px", color: "red", marginLeft: "15px" }} onClick={() => handleDeleteAnswer(id)}> delete answer</i>
                         </div>
                     )
                     }

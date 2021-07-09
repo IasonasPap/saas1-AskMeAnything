@@ -3,16 +3,40 @@ import React, { useState, useEffect } from "react";
 import QuestionsService from "../services/questions.service";
 import AuthenticationService from "../services/auth.service";
 import AnswersService from "../services/answers.service";
+import StatisticsService from "../services/statistics.service";
+
+import BarChart from "./graph.component";
 
 import "../styling/homepage.css";
 
 const Home = () => {
-  const [questions, setQuestions] = useState([]);
+  const [questionsPerDate, setQuestionsPerDate] = useState([]);
+  const [questionsPerKeyword, setQuestionsPerKeyword] = useState([]);
   const [numberOfQuestions, setNumberOfQuestions] = useState(0); 
   const [numberOfAnswers, setNumberOfAnswers] = useState(0); 
   const [numberOfUsers, setNumberOfUsers] = useState(0);
 
-  useEffect(() => {    
+  useEffect(() => {
+
+    StatisticsService.getQuestionsPerDate().then(
+      (response) => {
+        setQuestionsPerDate(response.data);
+      },
+      (error) => {
+        console.log(`Error Occured: ${error.message}`);
+        setQuestionsPerDate(`Error Occured: ${error.message}`);
+      }
+    );
+
+    StatisticsService.getQuestionsPerKeyword().then(
+      (response) => {
+        setQuestionsPerKeyword(response.data);
+      },
+      (error) => {        
+        console.log(`Error Occured: ${error.message}`);
+        setQuestionsPerKeyword("Error Occured",error.message);
+      }
+    );
 
     AuthenticationService.getNumberOfUsers().then(
       (response) => {
@@ -47,7 +71,6 @@ const Home = () => {
           (error.response && error.response.data) ||
           error.message ||
           error.toString();
-          setQuestions(_content);
           setNumberOfQuestions(-1);
       }
     );
@@ -74,13 +97,9 @@ const Home = () => {
         </div>
       </div>
       <header className="jumbotron">
-        <ul>
-        {typeof questions == 'string'
-        ? questions
-        : questions.map( ({id,title}) => 
-                <li id="to-do-list-item" key={id}><span id="list-item-id">{id}</span>{title}</li>
-              )}
-        </ul>
+        <BarChart id={1} data={questionsPerKeyword.map(({word,count}) => ({label:word,value:count}))} />
+        <BarChart id={2} data={questionsPerDate.map(({date,count}) => ({label:date,value:count}))} />
+        
       </header>
     </div>
   );

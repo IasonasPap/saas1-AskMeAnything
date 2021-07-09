@@ -24,7 +24,7 @@ const MyQuestion = ({id,title,text,questionedOn,keywords,answers}) => {
                     {
                         editQuestion
                             ? (<div>
-                                <i class="fa fa-check underline" style={{ fontSize: "20px", color: "green"}}> apply</i>
+                                <i className="fa fa-check underline" style={{ fontSize: "20px", color: "green"}}> apply</i>
                                 <i className="fa fa-close underline" style={{ fontSize: "20px", color: "red", marginLeft: "15px" }} onClick={handleEditQuestion}>cancel</i>
                             </div>)
                             : (<div>
