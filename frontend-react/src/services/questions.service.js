@@ -1,9 +1,10 @@
 import axios from "axios";
+import authHeader from "./auth-header.service";
 
 const API_URL = "http://localhost:5000/";
 
 const createQuestion = (question) => {
-    return axios.post(API_URL + "qa/question/createquestion", question);
+    return axios.post(API_URL + "qa/question/createquestion", question,{headers: authHeader()});
   };
   
 const findQuestionById = (id) => {

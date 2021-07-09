@@ -40,30 +40,28 @@ const pool = require('redis-connection-pool')('myRedisPool', {
 console.log("Connected to redis!");
 
 // initializing channels
-pool.hset('bus', 'messages', JSON.stringify([]), () => {});
-pool.hset('subscribers', 'authorize', JSON.stringify([]), () => {});
-pool.hset('subscribers', 'authorizedQA', JSON.stringify([]), () => {});
-pool.hset('subscribers', 'authorizedStat', JSON.stringify([]), () => {});
 
-// pool.hget('bus', 'messages', async(data, err) => {
-//     if (!data) {
-        
-//     }
-// });
-// pool.hget('subscribers', 'authorize', async (err, data) => {
-//     if (!data) {
-//     }
-// });
-// pool.hget('subscribers', 'authorizedQA', async(data, err) => {
-//     if (!data) {
-        
-//     }
-// });
-// pool.hget('subscribers', 'authorizedStat',  async(data, err) => {
-//     if (!data) {
-        
-//     }
-// });
+// initializing channels
+pool.hget('bus', 'messages', async(data, err) => {
+    if (!data) {
+        pool.hset('bus', 'messages', JSON.stringify([]), () => {});
+    }
+});
+pool.hget('subscribers', 'authorize', async (err, data) => {
+    if (!data) {
+        pool.hset('subscribers', 'authorize', JSON.stringify([]), () => {});
+    }
+});
+pool.hget('subscribers', 'authorizedQA', async(data, err) => {
+    if (!data) {
+        pool.hset('subscribers', 'authorizedQA', JSON.stringify([]), () => {});
+    }
+});
+pool.hget('subscribers', 'authorizedStat',  async(data, err) => {
+    if (!data) {
+        pool.hset('subscribers', 'authorizedStat', JSON.stringify([]), () => {});
+    }
+});
 
 //setup esb endpoints and functionalities
 
@@ -94,7 +92,9 @@ app.post("/esb/authorize", async (req, res) => {
                             res.send(resp.data)
                         })
                         .catch(e => {
-                            res.send({'error': e.message})
+                            res.status(401).json({
+                                message: "A problem with authentication occured!"
+                            });
                         });
                 }
             })
@@ -102,66 +102,6 @@ app.post("/esb/authorize", async (req, res) => {
     })
 });
 
-/*
-app.post("/esb/authorizedQA", async (req, res) => {
-    const event = req.body;
-    let currentMessages;
-    let newMessage = {};
-    pool.hget('bus', 'messages', async(err, data) => {
-        console.log(data);
-        currentMessages = JSON.parse(data);
-        newMessage = {
-            "id":currentMessages.length + 1,
-            event,
-            "timestamp": Date.now()
-        }
-        currentMessages.push(newMessage);
-        pool.hset('bus', 'messages', JSON.stringify(currentMessages), () => {
-            pool.hget('subscribers', 'authorizedQA', (err, data) => {
-                let subscribers = JSON.parse(data);
-                console.log(subscribers);
-                for (let i = 0; i < subscribers.length; i++){
-                    axios.post(subscribers[i], newMessage, then(resp => {
-                        console.log('epaikse')
-                    }).catch(e => {
-                        console.log('problem')
-                    }));
-                }
-                res.send({'status' : 'ok'});
-            })
-        })
-    })
-});
-
-app.post("/esb/authorizedStat", async (req, res) => {
-    const event = req.body;
-    let currentMessages;
-    let newMessage = {};
-    pool.hget('bus', 'messages', async(err, data) => {
-        currentMessages = JSON.parse(data);
-        newMessage = {
-            "id":currentMessages.length + 1,
-            event,
-            "timestamp": Date.now()
-        }
-        currentMessages.push(newMessage);
-        pool.hset('bus', 'messages', JSON.stringify(currentMessages), () => {
-            pool.hget('subscribers', 'authorizedStat', (err, data) => {
-                let subscribers = JSON.parse(data);
-                console.log(subscribers);
-                for (let i = 0; i < subscribers.length; i++){
-                    axios.post(subscribers[i], newMessage, then(resp => {
-                        console.log('epaikse')
-                    }).catch(e => {
-                        console.log('problem')
-                    }));
-                }
-                res.send({'status' : 'ok'});
-            })
-        })
-    })
-});
-*/
 
 app.get('/esb', (req, res) => {
     res.send('Up and running!')
