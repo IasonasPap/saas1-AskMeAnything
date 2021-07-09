@@ -8,7 +8,7 @@ const createQuestion = (question) => {
 };
 
 const deleteQuestion = (id) => {
-  return axios.post(API_URL + "qa/question/deletequestion", { id },{headers: { 'x-auth-token':"hdfsghdshdfs56343"}});
+  return axios.post(API_URL + "qa/question/deletequestion", { id },{headers: authHeader()});
 };
   
 const findQuestionById = (id) => {
