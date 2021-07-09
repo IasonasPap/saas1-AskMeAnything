@@ -3,6 +3,7 @@ import {useHistory} from "react-router-dom"
 import FullWidthTabs from "./tabPanel.component.js";
 import AuthService from "../services/auth.service.js";
 import UserService from "../services/user.service.js";
+import AnswersService from "../services/answers.service.js";
 import "../styling/profile.css";
 
 const Profile = () => {
@@ -14,6 +15,7 @@ const Profile = () => {
   const [newPassword,setNewPassword] = useState("");
   const [repeatNewPassword,setRepeatNewPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [answerId,setAnswerId] = useState("");
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
@@ -84,7 +86,12 @@ const Profile = () => {
     profileSettings.style.display = "none";
   }
 
-  const handleDelete = () => {
+  const handleCancel = () => {
+    const profileSettings = document.getElementById("accept-delete");
+    profileSettings.style.display = "none";
+  }
+
+  const handleDeleteProfile = () => {
     AuthService.deleteCurrentUser(currentUser.username).then(
       () => {
         AuthService.logout()
@@ -103,11 +110,21 @@ const Profile = () => {
     );
   }
 
-  const handleDeleteAnswer = () => {
-    console.log("DELETE ANSWER")
+  const handleDeleteAnswer = (answerId) => {
     const profileSettings = document.getElementById("accept-delete");
     profileSettings.style.display = "block";
-}
+    setAnswerId(answerId);
+  }
+
+  const handleDeleteAnswerAccepted = () => {
+    AnswersService.deleteAnswer(answerId).then(
+      () => {
+        const profileSettings = document.getElementById("accept-delete");
+        profileSettings.style.display = "none";
+        window.location.reload();
+      }
+    )
+  }
 
   return (
     (!currentUser ? (<div>Loading...</div>) :
@@ -116,14 +133,15 @@ const Profile = () => {
         <h2>{currentUser.username + "'s profile"}</h2>       
         <i className="fa fa-gear" style={{fontSize:"24px"}} onClick={handleSettings}></i>
       </div>
+
       <div className="accept-delete-container" id="accept-delete">
           <div className="accept-delete-content">
               <h1 style={{textAlign:"center"}}>Are you sure you want to delete it ?</h1>
 
               <div className="accept-delete">                    
                   <div>
-                      <button className="submit-btn" onClick>Yes</button>
-                      <button className="submit-btn" onClick={handleDeleteAnswer}>No</button>
+                      <button className="submit-btn" onClick={handleDeleteAnswerAccepted}>Yes</button>
+                      <button className="submit-btn" onClick={handleCancel}>No</button>
                   </div>
               </div>
           </div>
@@ -169,7 +187,7 @@ const Profile = () => {
                 </button>
               </div>
               <h4><i className="fa fa-close" style={{fontSize:"15px"}}></i> delete my profile</h4>
-              <button className="cancel-btn delete-user-btn" onClick={handleDelete}>
+              <button className="cancel-btn delete-user-btn" onClick={handleDeleteProfile}>
                 Delete Profile
               </button>
               </div>

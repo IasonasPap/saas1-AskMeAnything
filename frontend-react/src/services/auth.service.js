@@ -34,7 +34,7 @@ const logout = () => {
 };
 
 const getAllUsers = (userid) => {
-  return axios.get(API_URL + "auth/user/findusers/",{userid});
+  return axios.get(API_URL + "auth/user/findusers/",{userid},{headers: authHeader()});
 };
 
 const getCurrentUser = () => {
@@ -50,7 +50,7 @@ const updatePassword = (username,password) => {
 };
 
 const getNumberOfUsers = () => {
-  return axios.get(API_URL + "qa/answer/countusers");
+  return axios.get(API_URL + "auth/user/countusers");
 };
 
 export default {

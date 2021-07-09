@@ -4,11 +4,10 @@ import "../styling/profile.css";
 
 const MyQuestion = ({id,title,text,questionedOn,keywords,answers}) => {
     
-  const [edit,setEdit] = useState(false);
-  const [questionTitle,setQuestionTitle] = useState(title);
+  const [editQuestion,setEditQuestion] = useState(false);  
   const [questionText,setQuestionText] = useState(text);
 
-  const handleEdit = () => edit ? (setQuestionText(text),setQuestionTitle(title),setEdit(!edit)): setEdit(!edit)
+  const handleEditQuestion = () => editQuestion ? (setQuestionText(text),setEditQuestion(!editQuestion)): setEditQuestion(!editQuestion)
 
   const handleDeleteQuestion = () => {
     console.log("delete question")
@@ -16,32 +15,28 @@ const MyQuestion = ({id,title,text,questionedOn,keywords,answers}) => {
 
   const handleChangeText = (event) => setQuestionText(event.target.value)
 
-  const handleChangeTitle = (event) => setQuestionTitle(event.target.value)
-
     return (
         <li key={id}>
-            <div id="question" >
+            <div id="question">
                 <div className="edit-container">
-                    {edit
-                        ? <input id="change-title" value={questionTitle} onChange={handleChangeTitle}></input>
-                        : <h2 className="title">{questionTitle}</h2>
-                    }
+                    {/* <input id="change-title" value={questionTitle} onChange={handleChangeTitle}></input> */}
+                    <h2 className="title">{title}</h2>
                     {
-                        edit
+                        editQuestion
                             ? (<div>
                                 <i class="fa fa-check underline" style={{ fontSize: "20px", color: "green"}}> apply</i>
-                                <i className="fa fa-close underline" style={{ fontSize: "20px", color: "red", marginLeft: "15px" }} onClick={handleEdit}>cancel</i>
+                                <i className="fa fa-close underline" style={{ fontSize: "20px", color: "red", marginLeft: "15px" }} onClick={handleEditQuestion}>cancel</i>
                             </div>)
                             : (<div>
-                                <i className='fas fa-pen underline' style={{ fontSize: "20px", color: "grey" }} onClick={handleEdit}>edit</i>
+                                <i className='fas fa-pen underline' style={{ fontSize: "20px", color: "grey" }} onClick={handleEditQuestion}>edit</i>
                                 <i className="fa fa-close underline" style={{ fontSize: "20px", color: "red", marginLeft: "15px" }} onClick={handleDeleteQuestion}> delete question</i>
                             </div>
                             )
                     }
                 </div>
 
-                {edit
-                    ? <input id="change-text" value={questionText} onChange={handleChangeText}></input>
+                {editQuestion
+                    ? <textarea rows={3} id="change-text" value={questionText} onChange={handleChangeText}></textarea>
                     : <div>{questionText}</div>
                 }
                 

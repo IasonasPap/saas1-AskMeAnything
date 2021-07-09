@@ -5,10 +5,10 @@ import "../styling/profile.css";
 
 const MyAnswer = ({answer,handleDeleteAnswer}) => {
     const {id,text,answeredOn,question} = answer;
-    const [edit,setEdit] = useState(false);
+    const [editAnswer,setEditAnswer] = useState(false);
     const [answerText,setAnswerText] = useState(text);
 
-    const handleEdit = () => edit ? (setAnswerText(text),setEdit(!edit)): setEdit(!edit)
+    const handleEditAnswer = () => editAnswer ? (setAnswerText(text),setEditAnswer(!editAnswer)): setEditAnswer(!editAnswer)
 
     // const handleDeleteAnswer = () => {
     //     console.log("DELETE ANSWER")
@@ -36,37 +36,26 @@ const MyAnswer = ({answer,handleDeleteAnswer}) => {
             <div className="answer">
                 <div className="edit-container" id="flex-end"> 
                     {
-                    edit
+                    editAnswer
                     ? (<div>
                             <i className="fa fa-check underline" style={{ fontSize: "20px", color: "green"}}> apply</i>
-                            <i className="fa fa-close underline" style={{ fontSize: "20px", color: "red", marginLeft: "15px" }} onClick={handleEdit}>cancel</i>
+                            <i className="fa fa-close underline" style={{ fontSize: "20px", color: "red", marginLeft: "15px" }} onClick={handleEditAnswer}>cancel</i>
                         </div>)
                     : (<div>
-                            <i className='fas fa-pen underline' style={{ fontSize: "20px", color: "grey" }} onClick={handleEdit}>edit</i>
-                            <i className="fa fa-close underline" style={{ fontSize: "20px", color: "red", marginLeft: "15px" }} onClick={handleDeleteAnswer}> delete answer</i>
+                            <i className='fas fa-pen underline' style={{ fontSize: "20px", color: "grey" }} onClick={handleEditAnswer}>edit</i>
+                            <i className="fa fa-close underline" style={{ fontSize: "20px", color: "red", marginLeft: "15px" }} onClick={handleDeleteAnswer(id)}> delete answer</i>
                         </div>
                     )
                     }
                 </div>
 
-                {edit
+                {editAnswer
                     ? <input id="change-text" value={answerText} onChange={handleChangeText}></input>
                     : <div className="answer-text">{answerText}</div>
                 }
                 <div><span className="small-caps">asked on: </span> {answeredOn}</div>
 
-                {/* <div className="accept-delete-container" id="accept-delete">
-                    <div className="accept-delete-content">
-                        <h1 style={{textAlign:"center"}}>Are you sure you want to delete it ?</h1>
-
-                        <div className="accept-delete">                    
-                            <div>
-                                <button className="submit-btn" onClick={handleSubmit}>Yes</button>
-                                <button className="submit-btn" onClick={handleCancel}>No</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
+                
 
             </div>
 

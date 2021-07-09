@@ -24,7 +24,7 @@ const filterQuestionsByDate = (startDate, endDate) => {
 };
 
 const getNumberOfQuestions = () => {
-  return axios.get(API_URL + "qa/answer/countquestions");
+  return axios.get(API_URL + "qa/question/countquestions");
 };
   
 export default {

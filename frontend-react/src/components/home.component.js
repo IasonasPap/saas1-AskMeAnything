@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import UserService from "../services/user.service";
 import QuestionsService from "../services/questions.service";
 import AuthenticationService from "../services/auth.service";
 import AnswersService from "../services/answers.service";
@@ -41,7 +40,7 @@ const Home = () => {
 
     QuestionsService.getNumberOfQuestions().then(
       (response) => {
-        setNumberOfQuestions(response.data.lengthcount);
+        setNumberOfQuestions(response.data.count);
       },
       (error) => {
         const _content =
