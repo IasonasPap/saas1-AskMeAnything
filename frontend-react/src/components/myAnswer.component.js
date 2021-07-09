@@ -3,7 +3,7 @@ import "../styling/browseQuestions.css";
 
 import "../styling/profile.css";
 
-const MyAnswer = ({answer,handleDeleteAnswer}) => {
+const MyAnswer = ({answer,handleDelete}) => {
     const {id,text,answeredOn,question} = answer;
     const [editAnswer,setEditAnswer] = useState(false);
     const [answerText,setAnswerText] = useState(text);
@@ -43,7 +43,7 @@ const MyAnswer = ({answer,handleDeleteAnswer}) => {
                         </div>)
                     : (<div>
                             <i className='fas fa-pen underline' style={{ fontSize: "20px", color: "grey" }} onClick={handleEditAnswer}>edit</i>
-                            <i className="fa fa-close underline" style={{ fontSize: "20px", color: "red", marginLeft: "15px" }} onClick={() => handleDeleteAnswer(id)}> delete answer</i>
+                            <i className="fa fa-close underline" style={{ fontSize: "20px", color: "red", marginLeft: "15px" }} onClick={() => handleDelete(id,"accept-delete-answer")}> delete answer</i>
                         </div>
                     )
                     }

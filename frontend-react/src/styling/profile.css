@@ -116,7 +116,7 @@ li {
     align-items: center;
 }
 
-.settings-container,.accept-delete-container {
+.settings-container,.accept-delete-answer-container,.accept-delete-question-container {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -130,13 +130,13 @@ li {
     background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
   }
 
-  .settings,.accept-delete {
+  .settings,.accept-answer-delete,.accept-question-delete {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .modal-content,.accept-delete-content {
+  .modal-content,.accept-delete-answer-content,.accept-delete-question-content {
     position: relative;
     background-color: #fefefe;
     margin: auto;

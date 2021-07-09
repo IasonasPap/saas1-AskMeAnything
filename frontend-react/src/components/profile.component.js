@@ -4,6 +4,7 @@ import FullWidthTabs from "./tabPanel.component.js";
 import AuthService from "../services/auth.service.js";
 import UserService from "../services/user.service.js";
 import AnswersService from "../services/answers.service.js";
+import QuestionsService from "../services/questions.service.js";
 import "../styling/profile.css";
 
 const Profile = () => {
@@ -15,7 +16,7 @@ const Profile = () => {
   const [newPassword,setNewPassword] = useState("");
   const [repeatNewPassword,setRepeatNewPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [answerId,setAnswerId] = useState("");
+  const [id,setId] = useState("");
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
@@ -83,11 +84,11 @@ const Profile = () => {
     profileSettings.style.display = "block";
   }
 
-  const handleDeleteAnswer = (answerId) => {
-    console.log("DELETE ANSWER")
-    const profileSettings = document.getElementById("accept-delete-answer");
+  const handleDelete = (id,divToBeHidden) => {
+    console.log("DELETE ANSWER OR")
+    const profileSettings = document.getElementById(divToBeHidden);
     profileSettings.style.display = "block";
-    setAnswerId(answerId);
+    setId(id);
   }
 
   const handleExit = () => {
@@ -96,9 +97,9 @@ const Profile = () => {
     profileSettings.style.display = "none";
   }
 
-  const handleCancel = () => {
+  const handleCancel = (divToBeHidden) => {
     console.log("CANCEL DELETE ANSWER")
-    const profileSettings = document.getElementById("accept-delete-answer");
+    const profileSettings = document.getElementById(divToBeHidden);
     profileSettings.style.display = "none";
   }
 
@@ -122,9 +123,21 @@ const Profile = () => {
   }
 
   const handleDeleteAnswerAccepted = () => {
-    AnswersService.deleteAnswer(answerId).then(
+    AnswersService.deleteAnswer(id).then(
       () => {
+        setId("");
         const profileSettings = document.getElementById("accept-delete-answer");
+        profileSettings.style.display = "none";
+        window.location.reload();
+      }
+    )
+  }
+
+  const handleDeleteQuestionAccepted = () => {
+    QuestionsService.deleteQuestion(id).then(
+      () => {
+        setId("");
+        const profileSettings = document.getElementById("accept-delete-question");
         profileSettings.style.display = "none";
         window.location.reload();
       }
@@ -139,14 +152,26 @@ const Profile = () => {
         <i className="fa fa-gear" style={{fontSize:"24px"}} onClick={handleSettings}></i>
       </div>
 
-      <div className="accept-delete-container" id="accept-delete-answer">
-          <div className="accept-delete-content">
+      <div className="accept-delete-answer-container" id="accept-delete-answer">
+          <div className="accept-delete-answer-content">
               <h1 style={{textAlign:"center"}}>Are you sure you want to delete it ?</h1>
 
-              <div className="accept-delete">                    
+              <div className="accept-answer-delete">                    
                   <div>
                       <button className="submit-btn" onClick={handleDeleteAnswerAccepted}>Yes</button>
-                      <button className="submit-btn" onClick={handleCancel}>No</button>
+                      <button className="submit-btn" onClick={() => handleCancel("accept-delete-answer")}>No</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div className="accept-delete-question-container" id="accept-delete-question">
+          <div className="accept-delete-question-content">
+              <h1 style={{textAlign:"center"}}>Are you sure you want to delete it ?</h1>
+
+              <div className="accept-question-delete">                    
+                  <div>
+                      <button className="submit-btn" onClick={handleDeleteQuestionAccepted}>Yes</button>
+                      <button className="submit-btn" onClick={() => handleCancel("accept-delete-question")}>No</button>
                   </div>
               </div>
           </div>
@@ -231,7 +256,7 @@ const Profile = () => {
       </div>
 
       <div className="profile-questions">
-        <FullWidthTabs handleDeleteAnswer={handleDeleteAnswer} myQuestions={myQuestions} myAnswers={myAnswers}></FullWidthTabs>
+        <FullWidthTabs handleDelete={handleDelete} myQuestions={myQuestions} myAnswers={myAnswers}></FullWidthTabs>
       </div>
 
     </div>))

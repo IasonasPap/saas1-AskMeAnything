@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FullWidthTabs({myQuestions,myAnswers,handleDeleteAnswer}) {
+export default function FullWidthTabs({myQuestions,myAnswers,handleDelete}) {
   
   const classes = useStyles();
   const theme = useTheme();
@@ -87,13 +87,13 @@ export default function FullWidthTabs({myQuestions,myAnswers,handleDeleteAnswer}
         <TabPanel value={value} index={0} dir={theme.direction}>
           {(typeof myQuestions == "string") 
           ? myQuestions 
-          : (myQuestions.map( (question) => <MyQuestion {...question} />))
+          : (myQuestions.map( (question) => <MyQuestion question={question} handleDelete={handleDelete}  />))
           }
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           {(typeof myAnswers == "string") 
           ? myAnswers 
-          : (myAnswers.map( (answer) => <MyAnswer answer={answer} handleDeleteAnswer={handleDeleteAnswer} />))
+          : (myAnswers.map( (answer) => <MyAnswer answer={answer} handleDelete={handleDelete} />))
           }
         </TabPanel>
       </SwipeableViews>

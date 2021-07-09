@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import "../styling/profile.css";
 
-const MyQuestion = ({id,title,text,questionedOn,keywords,answers}) => {
-    
+const MyQuestion = ({question, handleDelete}) => {
+  const {id,title,text,questionedOn,keywords,answers} = question;
   const [editQuestion,setEditQuestion] = useState(false);  
   const [questionText,setQuestionText] = useState(text);
 
@@ -29,7 +29,7 @@ const MyQuestion = ({id,title,text,questionedOn,keywords,answers}) => {
                             </div>)
                             : (<div>
                                 <i className='fas fa-pen underline' style={{ fontSize: "20px", color: "grey" }} onClick={handleEditQuestion}>edit</i>
-                                <i className="fa fa-close underline" style={{ fontSize: "20px", color: "red", marginLeft: "15px" }} onClick={handleDeleteQuestion}> delete question</i>
+                                <i className="fa fa-close underline" style={{ fontSize: "20px", color: "red", marginLeft: "15px" }} onClick={() => handleDelete(id,"accept-delete-question")}> delete question</i>
                             </div>
                             )
                     }
