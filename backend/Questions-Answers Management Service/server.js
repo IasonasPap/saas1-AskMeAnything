@@ -67,6 +67,7 @@ pool.hget('subscribers', 'authorizedQA', async (err, data) => {
 //     cert: fs.readFileSync('../server.crt')
 // };
 
+
 //https.createServer(options, app)
 app.listen(5000, function () {
         console.log('App listening on port 5000! Go to https://localhost:5000/')

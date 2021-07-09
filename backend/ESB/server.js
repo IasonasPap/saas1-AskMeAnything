@@ -52,16 +52,6 @@ pool.hget('subscribers', 'authorize', async (err, data) => {
         pool.hset('subscribers', 'authorize', JSON.stringify([]), () => {});
     }
 });
-pool.hget('subscribers', 'authorizedQA', async(data, err) => {
-    if (!data) {
-        pool.hset('subscribers', 'authorizedQA', JSON.stringify([]), () => {});
-    }
-});
-pool.hget('subscribers', 'authorizedStat',  async(data, err) => {
-    if (!data) {
-        pool.hset('subscribers', 'authorizedStat', JSON.stringify([]), () => {});
-    }
-});
 
 //setup esb endpoints and functionalities
 
