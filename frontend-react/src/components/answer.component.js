@@ -73,7 +73,7 @@ const Question = ({userId}) => {
       : 
       <>
       <div className="question">
-        <h2 contentEditable="true">{title}</h2>
+        <h2>{title}</h2>
         <div>{text}</div>
         <ul className="keywords">
           {

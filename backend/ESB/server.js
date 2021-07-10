@@ -40,21 +40,18 @@ const pool = require('redis-connection-pool')('myRedisPool', {
 console.log("Connected to redis!");
 
 // initializing channels
-
-// initializing channels
 pool.hset('bus', 'messages', JSON.stringify([]), () => {});
 pool.hset('subscribers', 'authorize', JSON.stringify([]), () => {});
-
-console.log("OKOKOKOKO");
+// initializing channels
 
 // pool.hget('bus', 'messages', async(data, err) => {
 //     if (!data) {
-        
+//         pool.hset('bus', 'messages', JSON.stringify([]), () => {});
 //     }
 // });
 // pool.hget('subscribers', 'authorize', async (err, data) => {
 //     if (!data) {
-        
+//         pool.hset('subscribers', 'authorize', JSON.stringify([]), () => {});
 //     }
 // });
 
