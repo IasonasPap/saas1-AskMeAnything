@@ -62,10 +62,10 @@ pool.hget('subscribers', 'authorize', async (err, data) => {
 
 });
 
-const options = {
-    key: fs.readFileSync('../server.key'),
-    cert: fs.readFileSync('../server.crt')
-};
+// const options = {
+//     key: fs.readFileSync('../server.key'),
+//     cert: fs.readFileSync('../server.crt')
+// };
 
 //https.createServer(options, app)
 app.listen(4000, function () {

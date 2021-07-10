@@ -26,10 +26,10 @@ db.sequelize.sync()
     console.error(err);
 });
 
-const options = {
-    key: fs.readFileSync('../server.key'),
-    cert: fs.readFileSync('../server.crt')
-};
+// const options = {
+//     key: fs.readFileSync('../server.key'),
+//     cert: fs.readFileSync('../server.crt')
+// };
 
 //https.createServer(options, app)
 app.listen(5000, function () {

@@ -4,11 +4,11 @@ import authHeader from "./auth-header.service";
 const API_URL = "http://localhost:5000/";
 
 const createQuestion = (question) => {
-  return axios.post(API_URL + "qa/question/createquestion", question,{headers: { 'x-auth-token':"hdfsghdshdfs56343"}});
+  return axios.post(API_URL + "qa/question/createquestion", question,{headers: authHeader()});
 };
 
 const deleteQuestion = (id) => {
-  return axios.post(API_URL + "qa/question/deletequestion", { id },{headers: { 'x-auth-token':"hdfsghdshdfs56343"}});
+  return axios.post(API_URL + "qa/question/deletequestion", { id },{headers: authHeader()});
 };
   
 const findQuestionById = (id) => {

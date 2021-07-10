@@ -15,10 +15,10 @@ app.use(bodyParser.json());
 // to support URL-encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const options = {
-    key: fs.readFileSync('../server.key'),
-    cert: fs.readFileSync('../server.crt')
-};
+// const options = {
+//     key: fs.readFileSync('../server.key'),
+//     cert: fs.readFileSync('../server.crt')
+// };
 
 //https.createServer(options, app)
 app.listen(5003, function () {
@@ -40,18 +40,19 @@ const pool = require('redis-connection-pool')('myRedisPool', {
 console.log("Connected to redis!");
 
 // initializing channels
-
+pool.hset('bus', 'messages', JSON.stringify([]), () => {});
+pool.hset('subscribers', 'authorize', JSON.stringify([]), () => {});
 // initializing channels
-pool.hget('bus', 'messages', async(data, err) => {
-    if (!data) {
-        pool.hset('bus', 'messages', JSON.stringify([]), () => {});
-    }
-});
-pool.hget('subscribers', 'authorize', async (err, data) => {
-    if (!data) {
-        pool.hset('subscribers', 'authorize', JSON.stringify([]), () => {});
-    }
-});
+// pool.hget('bus', 'messages', async(data, err) => {
+//     if (!data) {
+//         pool.hset('bus', 'messages', JSON.stringify([]), () => {});
+//     }
+// });
+// pool.hget('subscribers', 'authorize', async (err, data) => {
+//     if (!data) {
+//         pool.hset('subscribers', 'authorize', JSON.stringify([]), () => {});
+//     }
+// });
 
 //setup esb endpoints and functionalities
 
