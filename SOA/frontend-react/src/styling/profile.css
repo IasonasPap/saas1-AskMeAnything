@@ -1,0 +1,205 @@
+#change-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    width: 80%;
+    line-height: 1.5;
+    margin-bottom: 0.9em;
+    letter-spacing: 0.00938em;
+}
+
+#flex-end {
+    justify-content: flex-end;
+}
+
+#change-text {
+    font-size: 1rem;
+    width: 80%;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+    background-color: white;
+}
+
+.underline:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.change-password {
+    padding: 10px 0 10px 30px;
+}
+
+.change-password button,.change-password input,.change-password label {
+    margin-top: 10px;
+    display: flex;
+}
+
+.change-password button {
+    padding: 10px 20px;
+}
+
+#old-password {
+    display: inline-block;
+}
+
+.feature-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-name {
+    padding: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5em;
+    font-family: 'Zen Loop','Otomanopee One','Indie Flower', cursive;
+    background-color: #9bc3e9;
+}
+
+.profile-name h1 {
+    text-align: center;
+    flex:0.8;
+}
+
+.fa-gear:hover {
+    color:#417B50;
+    cursor: pointer;
+}
+
+.profile-info-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #9bc3e9;
+}
+
+.profile-info {
+    margin: 40px 0 
+}
+
+#my-info {
+    border-radius: 8px;
+    background-color: #f7f7faab;
+    padding: 0 15px;
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 500;
+    margin: 0 7px;
+}
+
+.profile-user ul{
+    font-family: Poppins;
+    font-weight: bolder;
+}
+
+.profile-stats ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+}
+
+.profile-stats {
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+#my-answers {
+    margin: 0 30px;
+}
+
+.info {
+    font-size: 0.78em;
+    margin-left: 50px; 
+}
+
+li {
+    list-style: none;
+}
+
+.answer {
+    background-color: rgb(223, 190, 141);
+    color: black;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    padding: 10px 10px 0 20px;
+}
+
+.answer-text {
+    margin: 10px 0 20px 0;
+}
+
+.edit-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.settings-container,.accept-delete-answer-container,.accept-delete-question-container {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+  }
+
+  .settings,.accept-answer-delete,.accept-question-delete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-content,.accept-delete-answer-content,.accept-delete-question-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 10px;
+    border: 1px solid #888;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+  }
+
+.close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+.close:hover,
+.close:focus {
+  color: rgb(206, 16, 16);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:300; opacity:1}
+  }
+
+.delete-user-btn {
+    background-color: red;
+}
+
+#question-answered {
+    margin: 10px 0 65px 40px;
+}
+
+#submit-psw {
+    margin: 10px auto;
+}
