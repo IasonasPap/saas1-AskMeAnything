@@ -3,9 +3,17 @@ html,body {
   /* height:100%; */
 }
 
-/* .body-container {
-  position: fixed;
-} */
+.body-container {
+  z-index: 1;
+}
+
+.jumbotron {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index:2;
+  background-color: rgb(200, 195, 195);
+}
 
 a {
   text-decoration: none;
@@ -13,8 +21,10 @@ a {
 
 header {
   position: sticky;
+  z-index: 8;
   top: 0;
 }
+
 .navbar {
   background-color: #417B50;
   padding: 20px;
@@ -81,9 +91,6 @@ header li a {
   font-size: 1.5em;
 }
 
-.logo-container {
-  /* background-color: #abbbca; */
-}
 .logo-img {
   width: 203px;
   height: 150px;
@@ -105,10 +112,16 @@ header li a {
   height: 120px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
+  margin: 100px 0;
+  align-self: center;
 }
 
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.graph-title {
+  margin: 0 0 20px 0;
 }

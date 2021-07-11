@@ -80,27 +80,44 @@ const Home = () => {
     <div className="container">
       <div className="side-stats">
         <div className="stats-container">
+        <h1 className="welcome">Welcome to <span>Ask Me Anything</span> ! You ask we answer...</h1>
         <ul>
             <li>
-              <h1>{numberOfQuestions}</h1>
-              <i>questions</i>
+              <h1 className="counter">{numberOfQuestions}</h1>
+              <i>QUESTIONS</i>
             </li>
             <li id="my-answers">
-              <h1>{numberOfAnswers}</h1>
-              <i>answers</i>
+              <h1 className="counter">{numberOfAnswers}</h1>
+              <i>ANSWERS</i>
             </li>
             <li>
-              <h1>{numberOfUsers}</h1>
-              <i>users</i>
+              <h1 className="counter">{numberOfUsers}</h1>
+              <i>USERS</i>
             </li>
           </ul>
         </div>
       </div>
-      <header className="jumbotron">
-        <BarChart id={1} data={questionsPerKeyword.map(({word,count}) => ({label:word,value:count}))} />
-        <BarChart id={2} data={questionsPerDate.map(({date,count}) => ({label:date,value:count}))} />
+      <div className="jumbotron">
+        <div className="graph">
+          <h1 className="graph-title">Question Asked Per Keyword</h1>
+          <BarChart id={1} data={questionsPerKeyword.map(({word,count}) => ({label:word,value:count}))} />
+        </div>
+        <div className="graph">
+          <h1 className="graph-title">Question Asked Per Day</h1>
+          <BarChart id={2} data={questionsPerDate.map(({date,count}) => ({label:date,value:count}))} />
+        </div>        
         
-      </header>
+      </div>
+      
+      <footer>
+        <ul>
+          <li><a target="_blank" href="https://github.com/IasonasPap/saas1-AskMeAnything">about</a></li>
+          <li><a target="_blank" href="https://github.com/IasonasPap/saas1-AskMeAnything">contact us</a></li>
+          <li><a target="_blank" href="https://github.com/IasonasPap/saas1-AskMeAnything">project documentation</a></li>
+          <li><a target="_blank" href="https://github.com/IasonasPap/saas1-AskMeAnything">gitHub</a></li>
+          <li><a target="_blank" href="https://courses.pclab.ece.ntua.gr/course/view.php?id=34">course material</a></li>
+        </ul>
+      </footer>
     </div>
   );
 };

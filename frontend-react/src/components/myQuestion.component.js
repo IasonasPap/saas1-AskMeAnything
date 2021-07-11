@@ -17,7 +17,7 @@ const MyQuestion = ({question, handleDelete}) => {
 
     return (
         <li key={id}>
-            <div id="question">
+            <div className="question">
                 <div className="edit-container">
                     {/* <input id="change-title" value={questionTitle} onChange={handleChangeTitle}></input> */}
                     <h2 className="title">{title}</h2>

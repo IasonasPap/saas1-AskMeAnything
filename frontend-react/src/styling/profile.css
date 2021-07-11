@@ -47,6 +47,17 @@
 
 .profile-name {
     padding: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5em;
+    font-family: 'Zen Loop','Otomanopee One','Indie Flower', cursive;
+    background-color: #9bc3e9;
+}
+
+.profile-name h1 {
+    text-align: center;
+    flex:0.8;
 }
 
 .fa-gear:hover {
@@ -54,11 +65,25 @@
     cursor: pointer;
 }
 
-.profile-info {
+.profile-info-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: #9bc3e9;
+}
+
+.profile-info {
+    margin: 40px 0 
+}
+
+#my-info {
+    border-radius: 8px;
+    background-color: #f7f7faab;
+    padding: 0 15px;
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 500;
+    margin: 0 7px;
 }
 
 .profile-user ul{
@@ -82,11 +107,12 @@
 }
 
 #my-answers {
-    margin: 0 8px;
+    margin: 0 30px;
 }
 
 .info {
     font-size: 0.78em;
+    margin-left: 50px; 
 }
 
 li {
@@ -110,11 +136,6 @@ li {
     justify-content: space-between;
 }
 
-.profile-name {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
 .settings-container,.accept-delete-answer-container,.accept-delete-question-container {
     display: none; /* Hidden by default */
@@ -171,4 +192,8 @@ li {
 
 .delete-user-btn {
     background-color: red;
+}
+
+#question-answered {
+    margin: 10px 0 65px 40px;
 }

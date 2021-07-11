@@ -1,8 +1,10 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {useHistory} from "react-router-dom";
+import swal from 'sweetalert';
 import "../styling/askQuestion.css";
 
 import QuestionsService from "../services/questions.service";
+import AuthService from "../services/auth.service";
 
 // const required = (value) => {
 //   if (!value) {
@@ -15,12 +17,13 @@ import QuestionsService from "../services/questions.service";
 // };
 
 export default function Question({userId}) {
-  const history = useHistory();
-  const [title, setTitle] = React.useState('');
-  const [text, setText] = React.useState('');
-  const [keywordsString, setKeywords] = React.useState('');
 
-  const [submitted,setSubmitted] = React.useState(false);
+  const history = useHistory();
+  const [title, setTitle] = useState('');
+  const [text, setText] = useState('');
+  const [keywordsString, setKeywords] = useState('');
+
+  const [submitted,setSubmitted] = useState(false);
 
 
   const handleTitleChange = (event) => {
@@ -37,23 +40,22 @@ export default function Question({userId}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const keywords = keywordsString.split(',');
+
     QuestionsService.createQuestion({title,text,userId,keywords}).then(
       (response) => {
-        console.log(response);
-        console.log("Question Submitted")
         setSubmitted(true);
       },
       (error) => {
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-
+        const resMessage = error.response.data.message;
         console.log(resMessage);
+        
+        swal("Session Expired!", "You should login to continue!", "error").then( () => {
+          AuthService.logout();
+          history.push("/login");
+          window.location.reload();
+        });
+        
       }
     );   
   }
@@ -71,7 +73,7 @@ export default function Question({userId}) {
 
   return (
     
-    <div class="ask-question-container">
+    <div className="ask-question-container">
     { submitted ? (
       <div>
         <h4>Question Submitted Succesfully</h4>

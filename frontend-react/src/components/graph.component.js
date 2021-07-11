@@ -29,6 +29,7 @@ const BarChart = ({ id, data }) => {
       .append('g')
       .attr('transform',
         `translate(${margin.left},${margin.top})`);
+        
 
     const x = scaleBand()
       .range([0, width])

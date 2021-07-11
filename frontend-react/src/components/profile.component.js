@@ -16,6 +16,7 @@ const Profile = () => {
   const [newPassword,setNewPassword] = useState("");
   const [repeatNewPassword,setRepeatNewPassword] = useState("");
   const [message, setMessage] = useState("");
+  //const [succesful, setSuccesful] = useState(false);
   const [id,setId] = useState("");
 
   useEffect(() => {
@@ -147,11 +148,18 @@ const Profile = () => {
   return (
     (!currentUser ? (<div>Loading...</div>) :
     (<div className="profile-container">
-      <div className="profile-name">
-        <h2>{currentUser.username + "'s profile"}</h2>       
-        <i className="fa fa-gear" style={{fontSize:"24px"}} onClick={handleSettings}></i>
+      
+      <div style={{backgroundColor:"#9bc3e9"}}>
+        {/* {succesful && <i className="fa fa-check-circle" style={{fontSize:"24px",color:"green"}}> Deleted Succesfully !</i>} */}
+        <div className="profile-name">
+          <h1 style={{margin:"14px 0"}}>{currentUser.username + "'s profile"}</h1>       
+          <i className="fa fa-gear" style={{fontSize:"24px"}} onClick={handleSettings}></i>
+        </div>
+        <div id="my-info">
+          my info
+        </div>
       </div>
-
+      
       <div className="accept-delete-answer-container" id="accept-delete-answer">
           <div className="accept-delete-answer-content">
               <h1 style={{textAlign:"center"}}>Are you sure you want to delete it ?</h1>
@@ -225,17 +233,17 @@ const Profile = () => {
 
       </div>
 
-      <div className="profile-info">
+      <div className="profile-info-container">
         <div className="profile-user">
           <ul>
             <li>
-              <h3>username: <span className="info">{currentUser.user.username}</span></h3>
+              <h2 className="profile-info">username: <span className="info">{currentUser.user.username}</span></h2>
             </li>
             <li>
-              <h3>fullname: <span className="info">{currentUser.user.fullName}</span></h3>
+              <h2 className="profile-info">fullname: <span className="info">{currentUser.user.fullName}</span></h2>
             </li>
             <li>
-              <h3>email: <span className="info">{currentUser.user.email}</span></h3>
+              <h2 className="profile-info">email: <span className="info">{currentUser.user.email}</span></h2>
             </li>
           </ul>
         </div>
@@ -243,12 +251,12 @@ const Profile = () => {
         <div className="profile-stats">
           <ul>
             <li>
-              <h1>{myQuestions.length}</h1>
-              <i>questions</i>
+              <h1 className="counter">{myQuestions.length}</h1>
+              <i>QUESTIONS</i>
             </li>
             <li id="my-answers">
-              <h1>{myAnswers.length}</h1>
-              <i>answers</i>
+              <h1  className="counter">{myAnswers.length}</h1>
+              <i>ANSWERS</i>
             </li>
           </ul>
         </div>

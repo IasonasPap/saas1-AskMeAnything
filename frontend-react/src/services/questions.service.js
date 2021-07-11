@@ -4,7 +4,7 @@ import authHeader from "./auth-header.service";
 const API_URL = "http://localhost:5000/";
 
 const createQuestion = (question) => {
-  return axios.post(API_URL + "qa/question/createquestion", question,{headers: authHeader()});
+  return axios.post(API_URL + "qa/question/createquestion", question,{headers: {"x-auth-token": "gfsgsdgergrer"}});
 };
 
 const deleteQuestion = (id) => {
@@ -16,15 +16,15 @@ const findQuestionById = (id) => {
 };
 
 const filterQuestionsByKeywordAndDate = (startDate, endDate, word) => {
-  return axios.post(API_URL + "qa/question/findquestionsbydateandkeyword", {startDate, endDate, word});
+  return axios.post(API_URL + "qa/question/findquestionsbydateandkeyword", {startDate, endDate, word},{headers: authHeader()});
 };
 
 const filterQuestionsByKeyword = (word) => {
-  return axios.post(API_URL + "qa/question/findquestionsbykeyword", {word});
+  return axios.post(API_URL + "qa/question/findquestionsbykeyword", {word},{headers: authHeader()});
 };
 
 const filterQuestionsByDate = (startDate, endDate) => {
-  return axios.post(API_URL + "qa/question/findquestionsbydate", {startDate, endDate});
+  return axios.post(API_URL + "qa/question/findquestionsbydate", {startDate, endDate},{headers: authHeader()});
 };
 
 const getNumberOfQuestions = () => {

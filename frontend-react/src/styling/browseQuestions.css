@@ -78,7 +78,7 @@ a {
     flex-direction: column;
     justify-content: center;
     flex: 2;
-    padding: 30px;
+    padding: 20px;
     height: 100%;
     overflow: auto;
     background-color: white;
@@ -89,11 +89,12 @@ a {
     margin-bottom: 0.9em;
 }
 
-#question {
+.question {
     background-color: rgb(223, 190, 141);
     background-color: #eaf5e9;
     color: black;
     margin-bottom: 20px;
+    margin-top: 40px;
     border-radius: 7px;
     padding: 10px 10px 0 20px;
 }

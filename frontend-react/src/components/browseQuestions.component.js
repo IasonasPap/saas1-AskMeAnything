@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {Link} from "react-router-dom";
+
 import UserService from "../services/user.service";
 import QuestionsService from "../services/questions.service";
 import "../styling/browseQuestions.css";
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 const Browse = ({currentUser}) => {
   const classes = useStyles();
   const [message, setMessage] = useState("");
-  const [content, setContent] = useState([]);
+  const [content, setContent] = useState("");
   const [allQuestions, setAllQuestions] = useState([]);
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
@@ -221,12 +222,12 @@ const Browse = ({currentUser}) => {
 
       <div className="questions-container">        
         {(typeof content == 'string') 
-        ? content 
+        ? <div className="loader">
+          </div> 
         : (
           (!content.length)
           ? 
-          (<div className="loader">
-          </div>)
+          (<h1>No questions exist with the requested filters !</h1>)
           : (currentUser 
             ? (
             <ul className="questions-container">
@@ -235,9 +236,9 @@ const Browse = ({currentUser}) => {
                   const {id,title,text,questionedOn,keywords} = question;
                   return (
                   <li key={id}>
-                    <div id="question" >
+                    <div className="question" >
                       <Link 
-                        to={{pathname: "/answer/"+id}} 
+                        to={{pathname: "/answer/"+id , isLogedIn: true}} 
                         className="answer-link"
                       >
                         <h2 className="title">{title}</h2>
@@ -262,9 +263,9 @@ const Browse = ({currentUser}) => {
               {
                 const {id,title,text,questionedOn,keywords} = question;
                 return ( 
-                <li id="question" key={id}>
+                <li className="question" key={id}>
                   <Link 
-                      to={{pathname: "/answer/"+id, question}} 
+                      to={{pathname: "/answer/"+id , isLogedIn: false}} 
                       className="answer-link"
                   >
                     <h2>{title}</h2>

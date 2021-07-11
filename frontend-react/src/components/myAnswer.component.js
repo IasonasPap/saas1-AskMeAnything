@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from "react";
+import {Link} from "react-router-dom";
 import "../styling/browseQuestions.css";
 
 import "../styling/profile.css";
 
 const MyAnswer = ({answer,handleDelete}) => {
-    const {id,text,answeredOn,question} = answer;
+    const {id,text,answeredOn,question,questionId} = answer;
     const [editAnswer,setEditAnswer] = useState(false);
     const [answerText,setAnswerText] = useState(text);
 
     const handleEditAnswer = () => editAnswer ? (setAnswerText(text),setEditAnswer(!editAnswer)): setEditAnswer(!editAnswer)
-
-    // const handleDeleteAnswer = () => {
-    //     console.log("DELETE ANSWER")
-    //     const profileSettings = document.getElementById("accept-delete");
-    //     profileSettings.style.display = "block";
-    // }
 
     const handleAcceptDelete = () => {
 
@@ -59,9 +54,14 @@ const MyAnswer = ({answer,handleDelete}) => {
 
             </div>
 
-            <h2>Question Answered</h2>
-            <div id="question" >
-                <h2 className="title">{question.title}</h2>                      
+            <h2>Question Answered:</h2>
+            <div className="question" id="question-answered">
+                <Link 
+                    to={{pathname: "/answer/"+questionId}} 
+                    className="answer-link"
+                >
+                    <h2 className="title">{question.title}</h2>
+                </Link>                   
 
                 <ul className="keywords">
                     {

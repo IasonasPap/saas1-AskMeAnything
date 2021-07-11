@@ -5,7 +5,7 @@ import "../styling/answerQuestion.css";
 import QuestionsService from "../services/questions.service";
 import AnswersService from "../services/answers.service";
 
-const Question = ({userId}) => {
+const Question = ({userId,isLogedIn}) => {
   const {id} = useParams();
   const history = useHistory();
   
@@ -67,7 +67,7 @@ const Question = ({userId}) => {
           <button onClick={handleNewAnswer}>Give Another Answer</button>
         </div>
       ):(
-      !title ?
+      (title === "")?
       <div className="loader">
       </div>
       : 
@@ -102,23 +102,43 @@ const Question = ({userId}) => {
       }
 
     <h2>Give your answer:</h2>
-    <textarea
-      id="my-answer"
-      label="Multiline"
-      multiline
-      rows={8}
-      variant="outlined"
-      onChange={handleChange}
-      value={answer}
-    />
-    <div className="btns-container">
-      <button className="submit-btn" onClick={handleSubmit}>
-        Submit
-      </button>
-      <button className="cancel-btn" onClick={handleCancel}>
-        Cancel
-      </button>
+    <div>
+      {!isLogedIn ? (
+      <div>
+        <h1>You should log in to answer a Question !</h1>
+        <Link 
+          to={{pathname: "/login"}} 
+          className="answer-link"
+        >
+          <h2 className="title">{title}</h2>
+        </Link>
+      </div>      
+      ):(
+      <div>
+      <textarea
+        id="my-answer"
+        label="Multiline"
+        multiline
+        rows={8}
+        variant="outlined"
+        onChange={handleChange}
+        value={answer}
+      />
+      <div className="btns-container">
+        <button className="submit-btn" onClick={handleSubmit}>
+          Submit
+        </button>
+        <button className="cancel-btn" onClick={handleCancel}>
+          Cancel
+        </button>
+      </div>
+      
+      </div>
+      )
+      }
     </div>
+    
+    
     </>
     )}
     </div>
