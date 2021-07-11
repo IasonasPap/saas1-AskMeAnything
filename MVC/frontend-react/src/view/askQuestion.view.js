@@ -3,8 +3,8 @@ import {useHistory} from "react-router-dom";
 import swal from 'sweetalert';
 import "../styling/askQuestion.css";
 
-import QuestionsAnswersService from "../services/questions-answers.service";
-import AuthService from "../services/auth.service";
+import QuestionsAnswersService from "../controller/questions-answers.controller";
+import AuthService from "../controller/auth.controller";
 
 // const required = (value) => {
 //   if (!value) {

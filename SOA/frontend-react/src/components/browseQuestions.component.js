@@ -238,7 +238,7 @@ const Browse = ({currentUser}) => {
                   <li key={id}>
                     <div className="question" >
                       <Link 
-                        to={{pathname: `/answer/${id}/true`}} 
+                        to={{pathname: `/answer/${id}`}} 
                         className="answer-link"
                       >
                         <h2 className="title">{title}</h2>

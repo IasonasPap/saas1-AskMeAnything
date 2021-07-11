@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import StatisticsService from "../services/statistics.service";
+import StatisticsService from "../controller/statistics.controller";
 
-import BarChart from "./graph.component";
+import BarChart from "./graph.view";
 
 import "../styling/homepage.css";
 
