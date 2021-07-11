@@ -11,7 +11,7 @@ router.post("/deletequestion", auth, qaQuestionOperations.deletequestion);
 
 router.post("/updatequestiontext", auth, qaQuestionOperations.updatequestiontext);
 
-router.post("/findquestionbyid", auth, qaQuestionOperations.findById);
+router.post("/findquestionbyid", qaQuestionOperations.findById);
 
 router.post("/findquestionsbyuserid", auth, qaQuestionOperations.findQuestionsByUserId);
 
