@@ -3,9 +3,9 @@ import {useHistory} from "react-router-dom"
 import FullWidthTabs from "./tabPanel.component.js";
 import AuthService from "../services/auth.service.js";
 import UserService from "../services/user.service.js";
-import AnswersService from "../services/answers.service.js";
-import QuestionsService from "../services/questions.service.js";
+import QuestionsAnswersService from "../services/questions-answers.service.js";
 import "../styling/profile.css";
+import swal from 'sweetalert';
 
 const Profile = () => {
 
@@ -16,7 +16,6 @@ const Profile = () => {
   const [newPassword,setNewPassword] = useState("");
   const [repeatNewPassword,setRepeatNewPassword] = useState("");
   const [message, setMessage] = useState("");
-  //const [succesful, setSuccesful] = useState(false);
   const [id,setId] = useState("");
 
   useEffect(() => {
@@ -113,18 +112,19 @@ const Profile = () => {
         
       },
       (error) => {
-        const _content =
-          (error.response && error.response.data) ||
-          error.message ||
-          error.toString();
-
-        setMyQuestions(_content);
+          if(error.response.status) {
+            swal("Session Expired!", "You should login to continue!", "error").then( () => {
+                AuthService.logout();
+                history.push("/login");
+                window.location.reload();
+              });
+        }
       }
     );
   }
 
   const handleDeleteAnswerAccepted = () => {
-    AnswersService.deleteAnswer(id).then(
+    QuestionsAnswersService.deleteAnswer(id).then(
       () => {
         setId("");
         const profileSettings = document.getElementById("accept-delete-answer");
@@ -135,7 +135,7 @@ const Profile = () => {
   }
 
   const handleDeleteQuestionAccepted = () => {
-    QuestionsService.deleteQuestion(id).then(
+    QuestionsAnswersService.deleteQuestion(id).then(
       () => {
         setId("");
         const profileSettings = document.getElementById("accept-delete-question");
@@ -220,7 +220,7 @@ const Profile = () => {
                 </div>
                 )}
 
-                <button className="submit-btn" onClick={handleSubmit}>
+                <button className="submit-btn" id="submit-psw" onClick={handleSubmit}>
                   Submit
                 </button>
               </div>

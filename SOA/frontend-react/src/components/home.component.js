@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import QuestionsService from "../services/questions.service";
-import AuthenticationService from "../services/auth.service";
-import AnswersService from "../services/answers.service";
 import StatisticsService from "../services/statistics.service";
 
 import BarChart from "./graph.component";
@@ -38,7 +35,7 @@ const Home = () => {
       }
     );
 
-    AuthenticationService.getNumberOfUsers().then(
+    StatisticsService.getNumberOfUsers().then(
       (response) => {
         setNumberOfUsers(response.data.count);
       },
@@ -47,7 +44,7 @@ const Home = () => {
       }
     );
 
-    AnswersService.getNumberOfAnswers().then(
+    StatisticsService.getNumberOfAnswers().then(
       (response) => {
         console.log(response.data);
         setNumberOfAnswers(response.data.count);
@@ -62,7 +59,7 @@ const Home = () => {
       }
     );
 
-    QuestionsService.getNumberOfQuestions().then(
+    StatisticsService.getNumberOfQuestions().then(
       (response) => {
         setNumberOfQuestions(response.data.count);
       },

@@ -30,6 +30,7 @@
 
 .change-password button,.change-password input,.change-password label {
     margin-top: 10px;
+    display: flex;
 }
 
 .change-password button {
@@ -155,6 +156,7 @@ li {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
 
   .modal-content,.accept-delete-answer-content,.accept-delete-question-content {
@@ -196,4 +198,8 @@ li {
 
 #question-answered {
     margin: 10px 0 65px 40px;
+}
+
+#submit-psw {
+    margin: 10px auto;
 }

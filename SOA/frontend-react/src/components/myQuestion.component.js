@@ -1,16 +1,34 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState } from "react";
+import {useHistory} from "react-router-dom"
+import QuestionsAnswersService from '../services/questions-answers.service'
+import AuthService from "../services/auth.service.js";
 import "../styling/profile.css";
+import swal from 'sweetalert';
 
 const MyQuestion = ({question, handleDelete}) => {
   const {id,title,text,questionedOn,keywords,answers} = question;
+  const history = useHistory();
   const [editQuestion,setEditQuestion] = useState(false);  
   const [questionText,setQuestionText] = useState(text);
 
-  const handleEditQuestion = () => editQuestion ? (setQuestionText(text),setEditQuestion(!editQuestion)): setEditQuestion(!editQuestion)
+  const handleEdit = () => editQuestion ? (setQuestionText(text),setEditQuestion(!editQuestion)): setEditQuestion(!editQuestion)
 
-  const handleDeleteQuestion = () => {
-    console.log("delete question")
+  const handleApplyEdit = () => {
+    QuestionsAnswersService.updateQuestion(title,questionText).then(
+        (response) => {
+            history.push("/profile");
+            window.location.reload();
+        },
+        (error) => {
+            if(error.response.status) {
+                swal("Session Expired!", "You should login to continue!", "error").then( () => {
+                    AuthService.logout();
+                    history.push("/login");
+                    window.location.reload();
+                  });
+            }
+        }
+    )
   }
 
   const handleChangeText = (event) => setQuestionText(event.target.value)
@@ -24,11 +42,11 @@ const MyQuestion = ({question, handleDelete}) => {
                     {
                         editQuestion
                             ? (<div>
-                                <i className="fa fa-check underline" style={{ fontSize: "20px", color: "green"}}> apply</i>
-                                <i className="fa fa-close underline" style={{ fontSize: "20px", color: "red", marginLeft: "15px" }} onClick={handleEditQuestion}>cancel</i>
+                                <i className="fa fa-check underline" style={{ fontSize: "20px", color: "green"}} onClick={handleApplyEdit}> apply</i>
+                                <i className="fa fa-close underline" style={{ fontSize: "20px", color: "red", marginLeft: "15px" }} onClick={handleEdit}>cancel</i>
                             </div>)
                             : (<div>
-                                <i className='fas fa-pen underline' style={{ fontSize: "20px", color: "grey" }} onClick={handleEditQuestion}>edit</i>
+                                <i className='fas fa-pen underline' style={{ fontSize: "20px", color: "grey" }} onClick={handleEdit}>edit</i>
                                 <i className="fa fa-close underline" style={{ fontSize: "20px", color: "red", marginLeft: "15px" }} onClick={() => handleDelete(id,"accept-delete-question")}> delete question</i>
                             </div>
                             )

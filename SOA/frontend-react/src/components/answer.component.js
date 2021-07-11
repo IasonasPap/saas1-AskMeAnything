@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import {useParams, useHistory, Link} from "react-router-dom";
 
 import "../styling/answerQuestion.css";
-import QuestionsService from "../services/questions.service";
-import AnswersService from "../services/answers.service";
+import QuestionsAnswersService from "../services/questions-answers.service";
 
-const Question = ({userId,isLogedIn}) => {
+const Question = ({userId}) => {
   const {id} = useParams();
   const history = useHistory();
   
@@ -18,7 +17,7 @@ const Question = ({userId,isLogedIn}) => {
   const [submitted,setSubmitted] = useState(false);
   
   useEffect(()=> {
-    QuestionsService.findQuestionById(id).then(
+    QuestionsAnswersService.findQuestionById(id).then(
       (response) => {
         setText(response.data.text);
         setTitle(response.data.title);
@@ -42,7 +41,7 @@ const Question = ({userId,isLogedIn}) => {
   }
 
   const handleSubmit = (event) => {
-    AnswersService.createAnswer(answer,userId,id).then(() => {
+    QuestionsAnswersService.createAnswer(answer,userId,id).then(() => {
       setSubmitted(true);
     })
   }
@@ -58,12 +57,12 @@ const Question = ({userId,isLogedIn}) => {
 
   return (
     <div className="answer-container">
-      <h3>      
+      {/* <h3>      
           Answer a question
-      </h3>
+      </h3> */}
       {submitted ? (
-        <div>
-          <h4>Answer Submitted Succesfully</h4>
+        <div className="submitted">
+          <h1 style={{fontFamily:"Noto Sans JP"}}>Answer Submitted Succesfully</h1>
           <button onClick={handleNewAnswer}>Give Another Answer</button>
         </div>
       ):(
@@ -101,20 +100,21 @@ const Question = ({userId,isLogedIn}) => {
         )
       }
 
-    <h2>Give your answer:</h2>
     <div>
-      {!isLogedIn ? (
-      <div>
-        <h1>You should log in to answer a Question !</h1>
+    <h2>Give your answer:</h2>
+      {!userId ? (
+      <div className="not-loged-in">
+        <i class="fa fa-exclamation-circle" style={{fontSize:"80px", color:"yellow"}}><span style={{fontSize:"40px",color:"black",padding:"10x"}}>You should log in to answer a Question !</span></i>
         <Link 
           to={{pathname: "/login"}} 
           className="answer-link"
         >
-          <h2 className="title">{title}</h2>
+          <button style={{marginTop:"20px"}} onClick={() => {history.push('/login')}}>Login!</button>
         </Link>
       </div>      
-      ):(
+      ):(        
       <div>
+      
       <textarea
         id="my-answer"
         label="Multiline"

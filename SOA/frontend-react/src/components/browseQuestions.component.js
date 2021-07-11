@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {Link} from "react-router-dom";
 
 import UserService from "../services/user.service";
-import QuestionsService from "../services/questions.service";
+import QuestionsAnswersService from "../services/questions-answers.service";
 import "../styling/browseQuestions.css";
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -82,7 +82,7 @@ const Browse = ({currentUser}) => {
           Filters Applied!
         </div>
       );
-      QuestionsService.filterQuestionsByKeywordAndDate(startDate, endDate, keyword).then(
+      QuestionsAnswersService.filterQuestionsByKeywordAndDate(startDate, endDate, keyword).then(
         (response) => {
           setContent(response.data);
         },
@@ -110,7 +110,7 @@ const Browse = ({currentUser}) => {
           Filter Applied!
         </div>
       )
-      QuestionsService.filterQuestionsByKeyword(keyword).then(
+      QuestionsAnswersService.filterQuestionsByKeyword(keyword).then(
         (response) => {
           setContent(response.data);
         },
@@ -129,7 +129,7 @@ const Browse = ({currentUser}) => {
       const startDate = dateFrom.split("-").join("");
       const endDate = dateTo.split("-").join("");
 
-      QuestionsService.filterQuestionsByDate(startDate, endDate).then(
+      QuestionsAnswersService.filterQuestionsByDate(startDate, endDate).then(
         (response) => {
           setContent(response.data);
         },
@@ -227,7 +227,7 @@ const Browse = ({currentUser}) => {
         : (
           (!content.length)
           ? 
-          (<h1>No questions exist with the requested filters !</h1>)
+          (<h1 id="no-questions"><span style={{fontSize:"1.6em"}} className="alert">NO</span> questions exist with the requested filters !</h1>)
           : (currentUser 
             ? (
             <ul className="questions-container">
@@ -238,7 +238,7 @@ const Browse = ({currentUser}) => {
                   <li key={id}>
                     <div className="question" >
                       <Link 
-                        to={{pathname: "/answer/"+id , isLogedIn: true}} 
+                        to={{pathname: `/answer/${id}/true`}} 
                         className="answer-link"
                       >
                         <h2 className="title">{title}</h2>
@@ -265,7 +265,7 @@ const Browse = ({currentUser}) => {
                 return ( 
                 <li className="question" key={id}>
                   <Link 
-                      to={{pathname: "/answer/"+id , isLogedIn: false}} 
+                      to={{pathname: `/answer/${id}`}} 
                       className="answer-link"
                   >
                     <h2>{title}</h2>

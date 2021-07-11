@@ -41,3 +41,12 @@ button:hover {
     margin-top: 0;
     margin-right: 40px;
 }
+
+.submitted {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 95px
+}

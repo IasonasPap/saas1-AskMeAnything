@@ -3,7 +3,7 @@ import {useHistory} from "react-router-dom";
 import swal from 'sweetalert';
 import "../styling/askQuestion.css";
 
-import QuestionsService from "../services/questions.service";
+import QuestionsAnswersService from "../services/questions-answers.service";
 import AuthService from "../services/auth.service";
 
 // const required = (value) => {
@@ -42,7 +42,7 @@ export default function Question({userId}) {
     e.preventDefault();
     const keywords = keywordsString.split(',');
 
-    QuestionsService.createQuestion({title,text,userId,keywords}).then(
+    QuestionsAnswersService.createQuestion({title,text,userId,keywords}).then(
       (response) => {
         setSubmitted(true);
       },
@@ -75,8 +75,8 @@ export default function Question({userId}) {
     
     <div className="ask-question-container">
     { submitted ? (
-      <div>
-        <h4>Question Submitted Succesfully</h4>
+      <div className="submitted">
+        <h1 style={{fontFamily:"Noto Sans JP"}}>Question Submitted Succesfully</h1>
         <button onClick={handleNewQuestion}>New Question</button>
       </div>
     ):(

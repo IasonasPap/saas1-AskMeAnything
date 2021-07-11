@@ -49,9 +49,6 @@ const updatePassword = (username,password) => {
   return axios.post(API_URL + "auth/user/updatepassword/",{username,password},{headers: authHeader()});
 };
 
-const getNumberOfUsers = () => {
-  return axios.get(API_URL + "auth/user/countusers");
-};
 
 export default {
   register,
@@ -60,6 +57,5 @@ export default {
   getCurrentUser,
   getAllUsers,
   deleteCurrentUser,
-  updatePassword,
-  getNumberOfUsers
+  updatePassword
 };
