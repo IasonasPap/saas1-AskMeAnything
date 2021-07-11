@@ -1,9 +1,9 @@
 # AskMeAnything
 
-AskMyAnything is an application for sharing knowledge and oppinions with others. 
+AskMeAnything is an application for sharing knowledge and oppinions with others. 
 Each user can ask anything and others can provide answers to help him.
 
-A project for Software Enginnering course at NTUA, ECE, academic year 2020-2021.
+A project for Software as a Service course at NTUA, ECE, academic year 2020-2021.
 
 ## Team Members
 
