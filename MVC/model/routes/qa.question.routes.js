@@ -17,13 +17,13 @@ router.post("/findquestionsbyuserid", auth, qaQuestionOperations.findQuestionsBy
 
 router.post("/findquestionbydate", auth, qaQuestionOperations.findOneByDate);
 
-router.post("/findquestionsbydate", auth, qaQuestionOperations.findAllByDate);
+router.post("/findquestionsbydate", qaQuestionOperations.findAllByDate);
 
-router.post("/findquestionsbydateandkeyword", auth, qaQuestionOperations.findAllByDateAndKeyword);
+router.post("/findquestionsbydateandkeyword", qaQuestionOperations.findAllByDateAndKeyword);
 
 router.post("/findkeywordsbyquestion", auth, qaQuestionOperations.findKeywordByQuestionId);
 
-router.post("/findquestionsbykeyword", auth, qaQuestionOperations.findQuestionsByKeyword);
+router.post("/findquestionsbykeyword", qaQuestionOperations.findQuestionsByKeyword);
 
 router.get("/findquestions", qaQuestionOperations.findAll);
 

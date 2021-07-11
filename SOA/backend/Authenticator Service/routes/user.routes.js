@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
-const usersOperations = require('../operations/user.operations');
+const usersController = require('../controllers/user.controller');
 const auth = require('../middlewares/auth');
 
 // User Interface
-router.post("/signup", usersOperations.signup);
+router.post("/signup", usersController.signup);
 
-router.post("/updatepassword", auth, usersOperations.updatepassword);
+router.post("/updatepassword", auth, usersController.updatepassword);
 
-router.post("/deleteuser", auth, usersOperations.deleteuser);
+router.post("/deleteuser", auth, usersController.deleteuser);
 
-router.get("/findusers", usersOperations.findAll);
+router.get("/findusers", usersController.findAll);
 
 module.exports = router;

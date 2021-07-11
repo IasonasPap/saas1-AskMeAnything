@@ -1,30 +1,30 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
-const qaQuestionOperations = require('../operations/qa.question.operations');
+const qaQuestionController = require('../controllers/qa.question.controller');
 const checkauth = require('../middlewares/checkauth');
 
 //Question Interface
 
-router.post("/createquestion", checkauth, qaQuestionOperations.createquestion);
+router.post("/createquestion", checkauth, qaQuestionController.createquestion);
 
-router.post("/deletequestion", checkauth, qaQuestionOperations.deletequestion);
+router.post("/deletequestion", checkauth, qaQuestionController.deletequestion);
 
-router.post("/updatequestiontext", checkauth, qaQuestionOperations.updatequestiontext);
+router.post("/updatequestiontext", checkauth, qaQuestionController.updatequestiontext);
 
-router.post("/findquestionbyid", checkauth, qaQuestionOperations.findById);
+router.post("/findquestionbyid", checkauth, qaQuestionController.findById);
 
-router.post("/findquestionsbyuserid", checkauth, qaQuestionOperations.findQuestionsByUserId);
+router.post("/findquestionsbyuserid", checkauth, qaQuestionController.findQuestionsByUserId);
 
-router.post("/findquestionbydate", checkauth, qaQuestionOperations.findOneByDate);
+router.post("/findquestionbydate", checkauth, qaQuestionController.findOneByDate);
 
-router.post("/findquestionsbydate", checkauth, qaQuestionOperations.findAllByDate);
+router.post("/findquestionsbydate", qaQuestionController.findAllByDate);
 
-router.post("/findquestionsbydateandkeyword", checkauth, qaQuestionOperations.findAllByDateAndKeyword);
+router.post("/findquestionsbydateandkeyword", qaQuestionController.findAllByDateAndKeyword);
 
-router.post("/findkeywordsbyquestion", checkauth, qaQuestionOperations.findKeywordByQuestionId);
+router.post("/findkeywordsbyquestion", checkauth, qaQuestionController.findKeywordByQuestionId);
 
-router.post("/findquestionsbykeyword", checkauth, qaQuestionOperations.findQuestionsByKeyword);
+router.post("/findquestionsbykeyword", qaQuestionController.findQuestionsByKeyword);
 
-router.get("/findquestions", qaQuestionOperations.findAll);
+router.get("/findquestions", qaQuestionController.findAll);
 
 module.exports = router;
