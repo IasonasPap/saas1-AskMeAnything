@@ -3,9 +3,6 @@ const {answer, question, keyword, questionHasKeyword} = db;
 
 exports.createanswer = (req, res, next) => {
 
-    // Validate request
-    // userId is passed through create answer component, such as the id of the user whose token is provided
-
     if (!req.body.text || !req.body.userId || !req.body.questionId) {
         res.status(400).send({
             message: "You should provide some <text> for the answer!"
@@ -13,7 +10,6 @@ exports.createanswer = (req, res, next) => {
         return;
     }
 
-    // Create a newQuestion object
     let newAnswer = {
         text: req.body.text,
         answeredOn: Date.now(),
@@ -175,19 +171,6 @@ exports.findAll = (req, res) => {
             res.status(500).send({
                 message:
                     err.message || "Some error occurred while retrieving answers."
-            });
-        });
-};
-
-exports.findLength = (req, res) => {
-    answer.findAll()
-        .then(data => {
-            res.send({'count' : Object.keys(data).length});
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving users."
             });
         });
 };

@@ -4,8 +4,6 @@ const user = db.user;
 
 exports.signup = (req, res, next) => {
 
-    // Validate request
-
     if (!req.body.username || !req.body.password) {
         res.status(400).send({
             message: "You should provide a <username>,a <password> and an <email> for the new user!"
@@ -13,7 +11,6 @@ exports.signup = (req, res, next) => {
         return;
     }
 
-    // Create a newUser object
     let newUser = {
         username: req.body.username,
         password: req.body.password,
@@ -21,7 +18,6 @@ exports.signup = (req, res, next) => {
         email: req.body.email || null
     };
 
-    //Insert the newUser into the users table (when db is ready)
     user.create(newUser)
         .then(data => {
             res.send(data);
@@ -112,19 +108,6 @@ exports.findAll = (req, res) => {
     user.findAll()
         .then(data => {
             res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving users."
-            });
-        });
-};
-
-exports.findLength = (req, res) => {
-    user.findAll()
-        .then(data => {
-            res.send({'count' : Object.keys(data).length});
         })
         .catch(err => {
             res.status(500).send({
