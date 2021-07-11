@@ -1,40 +1,30 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
-const qaQuestionController = require('../controllers/qa.question.controller');
+const qaQuestionOperations = require('../operations/qa.question.operations');
 const checkauth = require('../middlewares/checkauth');
 
-//Question Data Interface
+//Question Interface
 
-// Create Question
-router.post("/createquestion", checkauth, qaQuestionController.createquestion);
+router.post("/createquestion", checkauth, qaQuestionOperations.createquestion);
 
-//Delete Question
-router.post("/deletequestion", checkauth, qaQuestionController.deletequestion);
+router.post("/deletequestion", checkauth, qaQuestionOperations.deletequestion);
 
-//Update Question's Text
-router.post("/updatequestiontext", checkauth, qaQuestionController.updatequestiontext);
+router.post("/updatequestiontext", checkauth, qaQuestionOperations.updatequestiontext);
 
-//Find Question By Id
-router.post("/findquestionbyid", checkauth, qaQuestionController.findById);
+router.post("/findquestionbyid", checkauth, qaQuestionOperations.findById);
 
-//Find Question By UserId
-router.post("/findquestionsbyuserid", checkauth, qaQuestionController.findQuestionsByUserId);
+router.post("/findquestionsbyuserid", checkauth, qaQuestionOperations.findQuestionsByUserId);
 
-//Find Question By Date
-router.post("/findquestionbydate", checkauth, qaQuestionController.findOneByDate);
+router.post("/findquestionbydate", checkauth, qaQuestionOperations.findOneByDate);
 
-//Find Questions By Date
-router.post("/findquestionsbydate", checkauth, qaQuestionController.findAllByDate);
+router.post("/findquestionsbydate", checkauth, qaQuestionOperations.findAllByDate);
 
-//Find Questions By Date And Keyword
-router.post("/findquestionsbydateandkeyword", checkauth, qaQuestionController.findAllByDateAndKeyword);
+router.post("/findquestionsbydateandkeyword", checkauth, qaQuestionOperations.findAllByDateAndKeyword);
 
-//Find Keywords By Question
-router.post("/findkeywordsbyquestion", checkauth, qaQuestionController.findKeywordByQuestionId);
+router.post("/findkeywordsbyquestion", checkauth, qaQuestionOperations.findKeywordByQuestionId);
 
-//Find Questions by Keyword
-router.post("/findquestionsbykeyword", checkauth, qaQuestionController.findQuestionsByKeyword);
+router.post("/findquestionsbykeyword", checkauth, qaQuestionOperations.findQuestionsByKeyword);
 
-router.get("/findquestions", qaQuestionController.findAll);
+router.get("/findquestions", qaQuestionOperations.findAll);
 
 module.exports = router;

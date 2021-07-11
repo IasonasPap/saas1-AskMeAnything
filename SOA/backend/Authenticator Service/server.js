@@ -7,15 +7,12 @@ const routes = require('./routes/index.routes');
 
 app.use(cors());
 
-// to support JSON-encoded bodies
 app.use(bodyParser.json());
 
-// to support URL-encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/auth', routes);
 
-//for future use, when we have set the db
 const db = require("../models");
 db.sequelize.sync()
     .then(() => {
@@ -60,9 +57,8 @@ pool.hget('subscribers', 'authorize', async (err, data) => {
 
 });
 
-//https.createServer(options, app)
 app.listen(4000, function () {
-        console.log('App listening on port 4000! Go to https://localhost:4000/')
+        console.log('App listening on port 4000! Go to http://localhost:4000/')
     });
 
 

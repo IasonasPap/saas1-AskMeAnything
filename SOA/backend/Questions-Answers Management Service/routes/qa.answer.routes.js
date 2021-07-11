@@ -1,25 +1,20 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
-const qaAnswerController = require('../controllers/qa.answer.controller');
+const qaAnswerOperations = require('../operations/qa.answer.operations');
 const checkauth = require('../middlewares/checkauth');
 
-//Answer Data Interface
+// Answer Interface
 
-//Create Answer
-router.post("/createanswer", checkauth, qaAnswerController.createanswer);
+router.post("/createanswer", checkauth, qaAnswerOperations.createanswer);
 
-//Delete Answer
-router.post("/deleteanswer", checkauth, qaAnswerController.deleteanswer);
+router.post("/deleteanswer", checkauth, qaAnswerOperations.deleteanswer);
 
-//Update Answer's Text
-router.post("/updateanswertext", checkauth, qaAnswerController.updateanswertext);
+router.post("/updateanswertext", checkauth, qaAnswerOperations.updateanswertext);
 
-//Find Answers by Question
-router.post("/findanswersbyquestion", checkauth, qaAnswerController.findAnswersByQuestionId);
+router.post("/findanswersbyquestion", checkauth, qaAnswerOperations.findAnswersByQuestionId);
 
-router.get("/findanswers", checkauth, qaAnswerController.findAll);
+router.get("/findanswers", checkauth, qaAnswerOperations.findAll);
 
-//Find Answers By UserId
-router.post("/findanswersbyuserid", checkauth, qaAnswerController.findAnswersByUserId);
+router.post("/findanswersbyuserid", checkauth, qaAnswerOperations.findAnswersByUserId);
 
 module.exports = router;

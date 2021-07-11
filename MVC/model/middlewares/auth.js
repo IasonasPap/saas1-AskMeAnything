@@ -8,7 +8,6 @@ module.exports = (req, res, next) => {
         });
     }
     else {
-        // sthn epomenh grammh einai to bug to opoio skaei gia opoiodhpote invalid token
         jwt.verify(token, 'RANDOM_TOKEN_SECRET', (err, decoded) => {
             if (err && err.name === 'TokenExpiredError') {
                 /*res.status(401).json({

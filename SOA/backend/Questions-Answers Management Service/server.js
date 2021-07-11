@@ -7,15 +7,12 @@ const routes = require('./routes/index.routes');
 
 app.use(cors());
 
-// to support JSON-encoded bodies
 app.use(bodyParser.json());
 
-// to support URL-encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/qa', routes);
 
-//for future use, when we have set the db
 const db = require("../models");
 db.sequelize.sync()
     .then(() => {
@@ -24,7 +21,6 @@ db.sequelize.sync()
     console.error(err);
 });
 
-//https.createServer(options, app)
 app.listen(5000, function () {
         console.log('App listening on port 5000! Go to http://localhost:5000/')
     });

@@ -7,13 +7,10 @@ const app = express();
 
 app.use(cors());
 
-// to support JSON-encoded bodies
 app.use(bodyParser.json());
 
-// to support URL-encoded bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//https.createServer(options, app)
 app.listen(5003, function () {
     console.log('App listening on port 5003! Go to http://localhost:5003/')
 });

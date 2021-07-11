@@ -5,9 +5,6 @@ const moment = require('moment');
 
 exports.createquestion = (req, res, next) => {
 
-    // Validate request
-    // userId is passed through create question component, such as the id of the user whose token is provided
-
     if (!req.body.title || !req.body.text || !req.body.userId) {
         res.status(400).send({
             message: "You should provide a <title> an some <text> for the new question!"
@@ -15,7 +12,6 @@ exports.createquestion = (req, res, next) => {
         return;
     }
 
-    // Create a newQuestion object
     let newQuestion = {
         title: req.body.title,
         text: req.body.text,
@@ -173,7 +169,6 @@ exports.findById = (req, res) => {
     })
         .then(data => {
             if (data) {
-                //data.getKeywords().then(data2 => {console.log(data2); res.send(data2)})
                 res.send(data)
             }
             else {
@@ -337,33 +332,7 @@ exports.findAllByDateAndKeyword = (req, res) => {
             message: "Something went wrong!"
         }));
 };
-/*
-    question.findAll({
-        where: {},
-        include: [{
-            model: answer, required: false,
-            attributes: ['text', 'answeredOn']
-        }, {
-            model: keyword, required: true, attributes: ['word'],
-            where: {word: temp_keyword},
-            through: {
-                model: questionHasKeyword, attributes: []
-            }
-        }]
-    })
-        .then(data => {
-            if (data) {
-                res.send(data)
-            }
-            else {
-                res.status(401).json({message: "Invalid dates or word!"})
-            }
-        })
-        .catch(() => res.status(401).json({
-            message: "Invalid dates or word!"
-        }));
 
- */
 
 exports.findAllByDate = (req, res) => {
     if (!req.body.startDate || !req.body.endDate) {
@@ -427,7 +396,6 @@ exports.findQuestionsByUserId = (req, res) => {
     })
         .then(data => {
             if (data) {
-                //data.getKeywords().then(data2 => {console.log(data2); res.send(data2)})
                 res.send(data)
             }
             else {

@@ -3,9 +3,6 @@ const {answer, question, keyword, questionHasKeyword} = db;
 
 exports.createanswer = (req, res, next) => {
 
-    // Validate request
-    // userId is passed through create answer component, such as the id of the user whose token is provided
-
     if (!req.body.text || !req.body.userId || !req.body.questionId) {
         res.status(400).send({
             message: "You should provide some <text> for the answer!"
@@ -13,7 +10,6 @@ exports.createanswer = (req, res, next) => {
         return;
     }
 
-    // Create a newQuestion object
     let newAnswer = {
         text: req.body.text,
         answeredOn: Date.now(),
