@@ -1,0 +1,127 @@
+html,body {
+  margin: 0px;
+  /* height:100%; */
+}
+
+.body-container {
+  z-index: 1;
+}
+
+.jumbotron {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index:2;
+  background-color: rgb(200, 195, 195);
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  position: sticky;
+  z-index: 8;
+  top: 0;
+}
+
+.navbar {
+  background-color: #417B50;
+  padding: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;  
+}
+
+
+header li a {
+  display: block;
+  color: rgb(252, 248, 248);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+.auth-btns ul,.nav-btns ul{
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 10px;
+}
+
+.nav-btns li {
+  margin-right: 8px;
+}
+
+.signup {
+  background-color: peru;
+  border-radius: 5px;
+  color: honeydew;
+}
+.graphs {
+  margin-top: 36px;
+}
+.per-keyword-graph, .per-period-graph {
+  border: 2px solid red;
+  width: 80%;
+  margin: auto;
+}
+
+.alert {
+  color: red;
+}
+.success {
+  color:rgb(16, 20, 240);
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+
+.navbar-brand {
+  font-family: Allan;
+  font-size: 1.5em;
+}
+
+.logo-img {
+  width: 203px;
+  height: 150px;
+  object-fit: none;
+  display: block;
+  margin: 0 0;
+}
+/* img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+} */
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  margin: 100px 0;
+  align-self: center;
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.graph-title {
+  margin: 0 0 20px 0;
+}

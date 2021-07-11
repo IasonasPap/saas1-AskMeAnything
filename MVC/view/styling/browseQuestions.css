@@ -1,0 +1,160 @@
+* {
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+    color: #333;
+}
+.browse-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex:1;
+    height: 100%;
+    min-height: 100%;
+    justify-content: stretch;    
+    background-color: #9bc3e9;
+    flex-grow: 1;
+}
+.dody-container {
+    flex:1;
+    height: 100%;
+  min-height: 100%;
+  flex-grow: 1;
+}
+#filter-heading {
+    flex: 1;
+    margin-top: 0;
+    margin-bottom: 35px;
+}
+
+.filter-container {
+    /* background-color: rgba(177, 168, 168, 0.246); */
+    display: flex;
+    flex: 1;
+    height: 100%;
+  min-height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 55px 20px 0 20px;
+    /* box-shadow: 0 1px 5px -1px rgb(0 0 0 / 13%); */
+}
+
+.filter-container h3 {
+    text-align: center;
+}
+
+.filter-questions {
+    margin-bottom: 20px;
+}
+
+.filter-by-date {
+    display: flex;
+}
+
+.filter-by-keyword {
+    margin-top: 50px;
+    padding-left: 10px;
+}
+
+.side-container {
+    display: flex;
+    flex: 1;
+    position: sticky;
+    top: 89.7px;
+    height: 100%;
+  min-height: 100%;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.btns-container {
+    flex: 1;
+    margin-top: 1.6em;
+}
+
+.questions-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 2;
+    padding: 20px;
+    height: 100%;
+    overflow: auto;
+    background-color: white;
+}
+
+.title {
+    margin-top: 0;
+    margin-bottom: 0.9em;
+}
+
+.question {
+    background-color: rgb(223, 190, 141);
+    background-color: #eaf5e9;
+    color: black;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    border-radius: 7px;
+    padding: 10px 10px 0 20px;
+}
+
+.keywords {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+
+.keywords li {
+    background-color: #CEE0ED;
+    padding: 2px 5px;
+    margin-right: 15px;
+    border-radius: 10px;
+}
+
+.answer-link:hover {
+    color: #417B50;
+}
+
+#date {
+    background-color: white;
+    border-radius: 3px;
+}
+
+#keyword-input {
+    border: none;
+    border-radius: 3px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.1876em;
+    padding: 6px 0 7px 4px;
+}
+
+.filter-by-date-container {
+    flex: 1;
+    width: 100%;
+    padding: 1.6em 0;
+    border-top: thin solid;
+}
+
+.filter-by-keyword-container {
+    flex: 1;
+    width: 100%;
+    padding: 1.6em 0;
+    border-top: thin solid;
+    border-bottom: thin solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.small-caps {
+    font-variant: small-caps;
+}
+
+#no-questions {
+    font-family: "Noto Sans JP";
+    margin: 0 auto;
+    padding: 100px 0;
+}
