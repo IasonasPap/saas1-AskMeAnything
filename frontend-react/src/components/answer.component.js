@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useParams, useHistory} from "react-router-dom";
+import {useParams, useHistory, Link} from "react-router-dom";
 
 import "../styling/answerQuestion.css";
 import QuestionsService from "../services/questions.service";
