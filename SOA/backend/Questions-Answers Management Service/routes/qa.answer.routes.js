@@ -22,6 +22,4 @@ router.get("/findanswers", checkauth, qaAnswerController.findAll);
 //Find Answers By UserId
 router.post("/findanswersbyuserid", checkauth, qaAnswerController.findAnswersByUserId);
 
-router.get('/countanswers', qaAnswerController.findLength);
-
 module.exports = router;

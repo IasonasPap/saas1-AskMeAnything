@@ -1,5 +1,5 @@
 const db = require("../../models");
-const {question, keyword, questionHasKeyword} = db;
+const {question, keyword, questionHasKeyword, user, answer} = db;
 const {Op, fn, col} = require("sequelize");
 const moment = require('moment');
 
@@ -82,4 +82,43 @@ exports.questionsPerKeyword = (req, res) => {
         .then(data => {
             res.status(200).json(data);
         })
+};
+
+exports.countUsers = (req, res) => {
+    user.findAll()
+        .then(data => {
+            res.send({'count' : Object.keys(data).length});
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving users."
+            });
+        });
+};
+
+exports.countQuestions = (req, res) => {
+    question.findAll()
+        .then(data => {
+            res.send({'count' : Object.keys(data).length});
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving users."
+            });
+        });
+};
+
+exports.countAnswers = (req, res) => {
+    answer.findAll()
+        .then(data => {
+            res.send({'count' : Object.keys(data).length});
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving users."
+            });
+        });
 };

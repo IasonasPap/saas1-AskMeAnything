@@ -8,4 +8,8 @@ router.post('/countquestionsperperiod', statisticsController.countQuestionsPerPe
 router.get('/questionsperdate', statisticsController.questionsPerDay);
 router.get('/questionsperkeyword', statisticsController.questionsPerKeyword);
 
+router.get('/countusers', statisticsController.countUsers);
+router.get('/countquestions', statisticsController.countQuestions);
+router.get('/countanswers', statisticsController.countAnswers);
+
 module.exports = router;

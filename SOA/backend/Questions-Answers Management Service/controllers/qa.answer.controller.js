@@ -178,16 +178,3 @@ exports.findAll = (req, res) => {
             });
         });
 };
-
-exports.findLength = (req, res) => {
-    answer.findAll()
-        .then(data => {
-            res.send({'count' : Object.keys(data).length});
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving users."
-            });
-        });
-};

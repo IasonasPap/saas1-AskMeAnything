@@ -37,6 +37,4 @@ router.post("/findquestionsbykeyword", checkauth, qaQuestionController.findQuest
 
 router.get("/findquestions", qaQuestionController.findAll);
 
-router.get("/countquestions", qaQuestionController.findLength);
-
 module.exports = router;
