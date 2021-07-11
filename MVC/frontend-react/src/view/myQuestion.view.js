@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {useHistory} from "react-router-dom"
-import QuestionsAnswersService from '../services/questions-answers.service'
-import AuthService from "../services/auth.service.js";
+import QuestionsAnswersService from '../controller/questions-answers.controller'
+import AuthService from "../controller/auth.controller.js";
 import "../styling/profile.css";
 import swal from 'sweetalert';
 

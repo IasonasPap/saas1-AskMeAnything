@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {useHistory} from "react-router-dom"
-import FullWidthTabs from "./tabPanel.component.js";
-import AuthService from "../services/auth.service.js";
-import UserService from "../services/user.service.js";
-import QuestionsAnswersService from "../services/questions-answers.service.js";
+import FullWidthTabs from "./tabPanel.view.js";
+import AuthService from "../controller/auth.controller.js";
+import UserService from "../controller/user.controller.js";
+import QuestionsAnswersService from "../controller/questions-answers.controller.js";
 import "../styling/profile.css";
 import swal from 'sweetalert';
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {useParams, useHistory, Link} from "react-router-dom";
 
 import "../styling/answerQuestion.css";
-import QuestionsAnswersService from "../services/questions-answers.service";
+import QuestionsAnswersService from "../controller/questions-answers.controller";
 
 const Question = ({userId}) => {
   const {id} = useParams();

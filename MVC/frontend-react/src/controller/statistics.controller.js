@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5005/";
+const API_URL = "http://localhost:5005/saas1/";
 
 const getQuestionsPerKeyword = () => {
     return axios.get(API_URL + "stat/questionsperkeyword");

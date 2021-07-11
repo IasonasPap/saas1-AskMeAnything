@@ -1,7 +1,7 @@
 import axios from "axios";
-import authHeader from "./auth-header.service";
+import authHeader from "./auth-header.controller";
 
-const API_URL = "http://localhost:5005/saas1";
+const API_URL = "http://localhost:5005/saas1/";
 
 const getPublicContent = () => {
   return axios.get(API_URL + "question/findquestions");

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, Link } from "react-router-dom";
-import "./styling/App.css";
+import "./App.css";
 import Image4 from './logo4.png'
 
-import AuthService from "./services/auth.service";
+import AuthService from "./controller/auth.controller";
 
-import Login from "./components/login.component.js";
-import Signup from "./components/signup.component.js";
-import Home from "./components/home.component.js";
-import Profile from "./components/profile.component.js";
-import Answer from "./components/answer.component.js";
-import Ask from "./components/askQuestion.component.js";
-import Browse from "./components/browseQuestions.component.js";
+import Login from "./view/login.view.js";
+import Signup from "./view/signup.view.js";
+import Home from "./view/home.view.js";
+import Profile from "./view/profile.view.js";
+import Answer from "./view/answer.view.js";
+import Ask from "./view/askQuestion.view.js";
+import Browse from "./view/browseQuestions.view.js";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(undefined);

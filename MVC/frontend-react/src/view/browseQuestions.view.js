@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import {Link} from "react-router-dom";
 
-import UserService from "../services/user.service";
-import QuestionsAnswersService from "../services/questions-answers.service";
+import UserService from "../controller/user.controller";
+import QuestionsAnswersService from "../controller/questions-answers.controller";
 import "../styling/browseQuestions.css";
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -238,7 +238,7 @@ const Browse = ({currentUser}) => {
                   <li key={id}>
                     <div className="question" >
                       <Link 
-                        to={{pathname: `/answer/${id}/true`}} 
+                        to={{pathname: `/answer/${id}`}} 
                         className="answer-link"
                       >
                         <h2 className="title">{title}</h2>
