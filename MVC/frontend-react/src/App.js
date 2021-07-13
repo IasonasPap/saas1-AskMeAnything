@@ -12,6 +12,7 @@ import Profile from "./view/profile.view.js";
 import Answer from "./view/answer.view.js";
 import Ask from "./view/askQuestion.view.js";
 import Browse from "./view/browseQuestions.view.js";
+import AboutUs from "./view/aboutUs.view.js";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -88,6 +89,7 @@ const App = () => {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/aboutus" component={AboutUs} />
         </Switch>
       </div>
     </>

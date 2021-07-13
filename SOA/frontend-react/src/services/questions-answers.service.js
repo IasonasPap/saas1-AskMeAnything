@@ -44,7 +44,7 @@ const getAllQuestions = () => {
 };
 
 const updateAnswer = (id,text) => {
-  return axios.post(API_URL + "qa/answer/updateanswertext", {id,text},{headers: {"x-auth-token":"csacascas"}});
+  return axios.post(API_URL + "qa/answer/updateanswertext", {id,text},{headers: authHeader()});
 };
 
 const updateQuestion = (title,text) => {

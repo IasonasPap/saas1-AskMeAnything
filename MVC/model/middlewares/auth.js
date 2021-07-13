@@ -16,11 +16,10 @@ module.exports = (req, res, next) => {
                 */
                 res.send({'message': 'Sessions Expired!'});
             } else if (err) {
-                /*res.status(401).json({
+                res.status(401).json({
                     message: "Invalid token!"
                 });
-                */
-                res.send({'message': 'Invalid token!'});
+                // res.send({'message': 'Invalid token!'});
             }
             else if (!err) {
                 const userId = decoded.userId;
