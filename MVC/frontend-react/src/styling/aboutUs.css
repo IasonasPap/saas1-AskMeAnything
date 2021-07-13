@@ -1,4 +1,5 @@
 .about-us {
+    text-align: center;
     font-family:Georgia, 'Times New Roman', Times, serif;
     background-color:#9bc3e9
 }
@@ -21,7 +22,6 @@
 }
 
 .contributors {
-    text-align: center;
     display: flex;
     margin-bottom: 30px;
 }
