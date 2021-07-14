@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import StatisticsService from "../controller/statistics.controller";
 
@@ -50,11 +51,6 @@ const Home = () => {
         setNumberOfAnswers(response.data.count);
       },
       (error) => {
-        // const _content =
-        //   (error.response && error.response.data) ||
-        //   error.message ||
-        //   error.toString();
-        //   console.log(_content);
         setNumberOfAnswers(-1);
       }
     );
@@ -108,9 +104,8 @@ const Home = () => {
       
       <footer>
         <ul>
-          <li><a target="_blank" href="https://github.com/IasonasPap/saas1-AskMeAnything">about</a></li>
-          <li><a target="_blank" href="https://github.com/IasonasPap/saas1-AskMeAnything">contact us</a></li>
-          <li><a target="_blank" href="https://github.com/IasonasPap/saas1-AskMeAnything">project documentation</a></li>
+          <li><Link to={"/aboutus"} className="nav-link">about us</Link></li>
+          <li><a target="_blank" href="https://github.com/IasonasPap/saas1-AskMeAnything/tree/main/documentation">project documentation</a></li>
           <li><a target="_blank" href="https://github.com/IasonasPap/saas1-AskMeAnything">gitHub</a></li>
           <li><a target="_blank" href="https://courses.pclab.ece.ntua.gr/course/view.php?id=34">course material</a></li>
         </ul>

@@ -1,0 +1,34 @@
+.about-us {
+    text-align: center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    background-color:#9bc3e9
+}
+
+.about-us h1 {
+    padding: 30px;
+    color: whitesmoke;
+    font-size: 2.6em;
+}
+
+.about-us p{
+    font-size: 1.3em;
+}
+
+.contact,.about {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: center;
+}
+
+.contributors {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.contributor {
+    margin-left: 60px;
+    padding: 10px;
+    border: thin solid;
+    width: 500px;
+}

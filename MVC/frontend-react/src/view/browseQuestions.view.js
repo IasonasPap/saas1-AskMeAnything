@@ -262,6 +262,7 @@ const Browse = ({currentUser}) => {
             {content.slice(0,10).map( (question) => 
               {
                 const {id,title,text,questionedOn,keywords} = question;
+                
                 return ( 
                 <li className="question" key={id}>
                   <Link 
@@ -273,9 +274,9 @@ const Browse = ({currentUser}) => {
                   <div>{text}</div>
                   <ul className="keywords">
                     {
-                      keywords.map((keyword) => {
-                        <li>{keyword}</li>
-                      })
+                      keywords.map(({word}) => 
+                        <li>{word}</li>
+                      )
                     }
                   </ul>
                   <div><span className="small-caps">asked on: </span> {questionedOn}</div>

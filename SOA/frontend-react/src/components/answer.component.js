@@ -53,6 +53,7 @@ const Question = ({userId}) => {
   const handleNewAnswer = () => {
     setSubmitted(false);
     setAnswer('');
+    window.location.reload();
   }
 
   return (
