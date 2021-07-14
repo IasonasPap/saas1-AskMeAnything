@@ -6,12 +6,12 @@ How to set up and run the project :
 1. Replace the node_modules/react-scripts/config/path.js with the path.js file given
 
 2. Run the server
-    node server.js
+    ```node server.js```
 
 3. Run the front end
-    npm start
+    ```npm start```
 
 How to initialize testing
 
-    npm test
+    ```npm test```
     
