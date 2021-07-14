@@ -13,5 +13,5 @@ How to set up and run the project :
 
 How to initialize testing
 
-    ```npm test```
+```npm test```
     
