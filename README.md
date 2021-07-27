@@ -49,6 +49,6 @@ This folder contains the implementation of the project using SOA architecture.
 
 This folder contains the implementation of the project using MVC architecture.
 
-```diagrams.vpp```
+```documentation/```
 
-This file contains deployment and component diagrams of the project with each architecture used.
+This folder contains a vpp file with component and deployment diagrams for both architectures used and, also, contains a json file with requests to all the API endpoints for postman usage.
